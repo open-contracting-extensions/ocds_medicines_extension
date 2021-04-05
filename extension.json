@@ -1,0 +1,30 @@
+{
+  "name": {
+    "en": "Medicine Extension",
+    "es": "Extension de Medicina"
+  },
+  "description": {
+    "en": "Extension of the OCDS standard for public medicine procurement processes",
+    "es": "Extensión del estándar OCDS para los procesos de compras públicas de medicamentos"
+  },
+  "documentationUrl": {
+    "en": "",
+    "es": ""
+  },
+  "schemas": [
+    "release-schema.json"
+  ],
+  "codelists": [
+    "dosageForm.csv",
+    "routeOfAdministration.csv",
+    "unitDosage.csv",
+    "container.csv"
+  ],
+  "compatibility": [
+    "1.1"
+  ],
+  "contactPoint": {
+    "name": "Open Contracting Partnership",
+    "email": "data@open-contracting.org"
+  }
+}

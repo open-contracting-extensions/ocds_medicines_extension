@@ -1,0 +1,176 @@
+{
+  "definitions": {
+    "Dosage": {
+      "title": "Dosis",
+      "description": "El valor y la unidad de la Dosificación, Concentración o Capacidad.",
+      "type": "object",
+      "properties": {
+        "numericValue": {
+          "title": "Valor numerico",
+          "description": "El valor numerico de la Dosis.",
+          "type": "integer"
+        },
+        "unit": {
+          "title": "Unidad",
+          "description": "La unidad de medida de la Dosis.",
+          "type": "string",
+          "enum": [
+            "g",
+            "mg",
+            "mcg",
+            "ml",
+            "mmrol",
+            "U",
+            "TU",
+            "MU"
+          ],
+          "codelist": "unitDosage.csv",
+          "openCodelist": true
+        }
+      }
+    },
+    "DosageForm": {
+      "title": "Forma de Dosificación",
+      "description": "Una forma de dosificación en la que está disponible este medicamento..",
+      "type": "string",
+      "enum": [
+        "tablet",
+        "liquid",
+        "suspension",
+        "injection",
+        "cream",
+        "earDrops",
+        "gas",
+        "gel",
+        "inhaler",
+        "powder",
+        "lotion",
+        "spray",
+        "suppository",
+        "test"
+      ],
+      "codelist": "dosageForm.csv",
+      "openCodelist": true
+    },
+    "RouteOfAdministration": {
+      "title": "Vía de Administración",
+      "description": "Vía por la que se puede administrar este medicamento.",
+      "type": "string",
+      "enum": [
+        "implant",
+        "inhal",
+        "instill",
+        "N",
+        "O",
+        "P",
+        "R",
+        "SL",
+        "TD",
+        "V"
+      ],
+      "codelist": "routeOfAdministration.csv",
+      "openCodelist": true
+    },
+    "Container": {
+      "title": "Envase",
+      "description": "El envase o forma de presentación del medicamento.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "description": "Un identificador para este contenedor.",
+          "type": [
+            "string",
+            "integer"
+          ]
+        },
+        "name": {
+          "title": "Nombre del envase",
+          "description": "El nombre del envase del medicamento.",
+          "type": "string",
+          "enum": [
+            "jar",
+            "blister",
+            "blisterVial",
+            "dropperBottle",
+            "preFilledSyringe",
+            "tube",
+            "compressed",
+            "cartridge"
+          ],
+          "codelist": "container.csv",
+          "openCodelist": true
+        },
+        "capacity": {
+          "title": "Capacidad del contenedor",
+          "description": "La capacidad del contenedor del medicamento.",
+          "$ref": "#/definitions/Dosage"
+        }
+      }
+    },
+    "ActiveIngredient": {
+      "title": "Ingrediente Activo",
+      "description": "Describe un ingrediente activo, típicamente compuestos químicos y / o sustancias biológicas.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "description": "Un identificador para este ingrediente activo.",
+          "type": [
+            "string",
+            "integer"
+          ]
+        },
+        "name": {
+          "title": "Nombre del Ingrediente Activo",
+          "description": "Se refiere al nombre genérico como en la Denominación Común Internacional (DCI). Este campo es el mismo que el atributo 'nombre' en el estándar ATC / DDD. Esto también se denomina normalmente: nombre genérico, fármaco, nombre de la sustancia, sustancia activa.",
+          "type": "string"
+        },
+        "dosage": {
+          "title": "Dosis del Ingrediente Activo",
+          "description": "La dosis o potencia del Ingrediente Activo.",
+          "$ref": "#/definitions/Dosage"
+        }
+      }
+    },
+    "MedicineAttributes": {
+      "title": "Atributos de Medicina",
+      "description": "Describir los atributos y propiedades de las sustancias químicas o biológicas utilizadas como terapia médica, que tienen un efecto fisiológico en un organismo. Aquí el término fármaco se usa indistintamente con el término medicina, aunque el conocimiento clínico marca una clara diferencia entre ellos.",
+      "type": "object",
+      "properties": {
+        "activeIngredients": {
+          "title": "Ingrediente Activo",
+          "description": "Una lista de Ingredientes Activos para el medicamento.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ActiveIngredient"
+          }
+        },
+        "dosageForm": {
+          "title": "Dosis",
+          "description": "Una forma de dosificación en la que está disponible este medicamento.",
+          "$ref": "#/definitions/DosageForm"
+        },
+        "routeOfAdministration": {
+          "title": "Vía de Administración",
+          "description": "Vía por la que se puede administrar este medicamento..",
+          "$ref": "#/definitions/RouteOfAdministration"
+        },
+        "container": {
+          "title": "Contenedor",
+          "description": "El envase o forma de presentación del medicamento.",
+          "$ref": "#/definitions/Container"
+        }
+      }
+    },
+    "Item": {
+      "properties": {
+        "medicineAttributes": {
+          "title": "Atributos de Medicina",
+          "description": "Describir los atributos y propiedades de las sustancias químicas o biológicas utilizadas como terapia médica, que tienen un efecto fisiológico en un organismo. Aquí el término fármaco se usa indistintamente con el término medicina, aunque el conocimiento clínico marca una clara diferencia entre ellos.",
+          "$ref": "#/definitions/MedicineAttributes"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,176 @@
+{
+  "definitions": {
+    "Dosage": {
+      "title": "Dosage",
+      "description": "The value and unit of the Dosage, Concentration or Capacity.",
+      "type": "object",
+      "properties": {
+        "numericValue": {
+          "title": "Numeric Value",
+          "description": "The numeric value of the Dosage.",
+          "type": "integer"
+        },
+        "unit": {
+          "title": "Unit",
+          "description": "The unit of measurement of the Dosage. ",
+          "type": "string",
+          "enum": [
+            "g",
+            "mg",
+            "mcg",
+            "ml",
+            "mmrol",
+            "U",
+            "TU",
+            "MU"
+          ],
+          "codelist": "unitDosage.csv",
+          "openCodelist": true
+        }
+      }
+    },
+    "DosageForm": {
+      "title": "Dosage Form",
+      "description": " A dosage form in which this medicine is available.",
+      "type": "string",
+      "enum": [
+        "tablet",
+        "liquid",
+        "suspension",
+        "injection",
+        "cream",
+        "earDrops",
+        "gas",
+        "gel",
+        "inhaler",
+        "powder",
+        "lotion",
+        "spray",
+        "suppository",
+        "test"
+      ],
+      "codelist": "dosageForm.csv",
+      "openCodelist": true
+    },
+    "RouteOfAdministration": {
+      "title": "Route of Administration",
+      "description": "A route by which this medicine can be given.",
+      "type": "string",
+      "enum": [
+        "implant",
+        "inhal",
+        "instill",
+        "N",
+        "O",
+        "P",
+        "R",
+        "SL",
+        "TD",
+        "V"
+      ],
+      "codelist": "routeOfAdministration.csv",
+      "openCodelist": true
+    },
+    "Container": {
+      "title": "Container",
+      "description": "The container or presentation form of the medicine.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "description": "An identifier for this Container.",
+          "type": [
+            "string",
+            "integer"
+          ]
+        },
+        "name": {
+          "title": "Container Name",
+          "description": "The name of the container.",
+          "type": "string",
+          "enum": [
+            "jar",
+            "blister",
+            "blisterVial",
+            "dropperBottle",
+            "preFilledSyringe",
+            "tube",
+            "compressed",
+            "cartridge"
+          ],
+          "codelist": "container.csv",
+          "openCodelist": true
+        },
+        "capacity": {
+          "title": "Container Capacity",
+          "description": "The Capacity of the container.",
+          "$ref": "#/definitions/Dosage"
+        }
+      }
+    },
+    "ActiveIngredient": {
+      "title": "Active Ingredient",
+      "description": "Describe an Active Ingredient and dosage for the drug, generally chemical compounds and / or biological substances.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "description": "An identifier for this Active Ingredient.",
+          "type": [
+            "string",
+            "integer"
+          ]
+        },
+        "name": {
+          "title": "Active Ingredient Name",
+          "description": "The name of the Active Ingredient. It refers to the generic name as in the International Common Denomination (INN). This field is the same as the 'name' attribute in the ATC / DDD standard. Also known as: generic name, drug, substance name, active substance. ",
+          "type": "string"
+        },
+        "dosage": {
+          "title": "Active Ingredient Dosage",
+          "description": "The dosage or potency of the Active Ingredient. ",
+          "$ref": "#/definitions/Dosage"
+        }
+      }
+    },
+    "MedicineAttributes": {
+      "title": "Medicine Attributes",
+      "description": "Describe the attributes and properties of chemical or biological substances used as medical therapy, which has a physiological effect on an organism. Here the term drug is used interchangeably with the term medicine, although clinical knowledge makes a clear difference between them.",
+      "type": "object",
+      "properties": {
+        "activeIngredients": {
+          "title": "Active Ingredients",
+          "description": "An array of Active Ingredients for the medicine.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ActiveIngredient"
+          }
+        },
+        "dosageForm": {
+          "title": "Dosage",
+          "description": "A dosage form in which this medicine is available.",
+          "$ref": "#/definitions/DosageForm"
+        },
+        "routeOfAdministration": {
+          "title": "Route of Administration",
+          "description": "A route by which this medicine can be given.",
+          "$ref": "#/definitions/RouteOfAdministration"
+        },
+        "container": {
+          "title": "Container",
+          "description": "The container or presentation form of the medicine.",
+          "$ref": "#/definitions/Container"
+        }
+      }
+    },
+    "Item": {
+      "properties": {
+        "medicineAttributes": {
+          "title": "Medicine Attributes",
+          "description": "Describe the attributes and properties of chemical or biological substances used as medical therapy, which has a physiological effect on an organism. Here the term drug is used interchangeably with the term medicine, although clinical knowledge makes a clear difference between them.",
+          "$ref": "#/definitions/MedicineAttributes"
+        }
+      }
+    }
+  }
+}
