@@ -8,21 +8,17 @@
         "numericValue": {
           "title": "Numeric Value",
           "description": "The numeric value of the Dosage.",
-          "type": "integer"
+          "type": [
+            "integer",
+            "null"
+          ]
         },
         "unit": {
           "title": "Unit",
           "description": "The unit of measurement of the Dosage. ",
-          "type": "string",
-          "enum": [
-            "g",
-            "mg",
-            "mcg",
-            "ml",
-            "mmrol",
-            "U",
-            "TU",
-            "MU"
+          "type": [
+            "string",
+            "null"
           ],
           "codelist": "unitDosage.csv",
           "openCodelist": true
@@ -32,22 +28,9 @@
     "DosageForm": {
       "title": "Dosage Form",
       "description": " A dosage form in which this medicine is available.",
-      "type": "string",
-      "enum": [
-        "tablet",
-        "liquid",
-        "suspension",
-        "injection",
-        "cream",
-        "earDrops",
-        "gas",
-        "gel",
-        "inhaler",
-        "powder",
-        "lotion",
-        "spray",
-        "suppository",
-        "test"
+      "type": [
+            "string",
+            "null"
       ],
       "codelist": "dosageForm.csv",
       "openCodelist": true
@@ -55,18 +38,9 @@
     "RouteOfAdministration": {
       "title": "Route of Administration",
       "description": "A route by which this medicine can be given.",
-      "type": "string",
-      "enum": [
-        "implant",
-        "inhal",
-        "instill",
-        "N",
-        "O",
-        "P",
-        "R",
-        "SL",
-        "TD",
-        "V"
+      "type": [
+        "string",
+        "null"
       ],
       "codelist": "routeOfAdministration.csv",
       "openCodelist": true
@@ -77,7 +51,7 @@
       "type": "object",
       "properties": {
         "id": {
-          "title": "ID",
+          "title": "Container ID",
           "description": "An identifier for this Container.",
           "type": [
             "string",
@@ -87,16 +61,9 @@
         "name": {
           "title": "Container Name",
           "description": "The name of the container.",
-          "type": "string",
-          "enum": [
-            "jar",
-            "blister",
-            "blisterVial",
-            "dropperBottle",
-            "preFilledSyringe",
-            "tube",
-            "compressed",
-            "cartridge"
+          "type": [
+            "string",
+            "null"
           ],
           "codelist": "container.csv",
           "openCodelist": true
@@ -114,7 +81,7 @@
       "type": "object",
       "properties": {
         "id": {
-          "title": "ID",
+          "title": "Active Ingredient ID",
           "description": "An identifier for this Active Ingredient.",
           "type": [
             "string",
@@ -124,7 +91,10 @@
         "name": {
           "title": "Active Ingredient Name",
           "description": "The name of the Active Ingredient. It refers to the generic name as in the International Common Denomination (INN). This field is the same as the 'name' attribute in the ATC / DDD standard. Also known as: generic name, drug, substance name, active substance. ",
-          "type": "string"
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "dosage": {
           "title": "Active Ingredient Dosage",
