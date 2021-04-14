@@ -28,20 +28,14 @@
     "DosageForm": {
       "title": "Dosage Form",
       "description": " A dosage form in which this medicine is available.",
-      "type": [
-            "string",
-            "null"
-      ],
+      "type": "string",
       "codelist": "dosageForm.csv",
       "openCodelist": true
     },
     "RouteOfAdministration": {
       "title": "Route of Administration",
       "description": "A route by which this medicine can be given.",
-      "type": [
-        "string",
-        "null"
-      ],
+      "type": "string",
       "codelist": "routeOfAdministration.csv",
       "openCodelist": true
     },
@@ -55,7 +49,8 @@
           "description": "An identifier for this Container.",
           "type": [
             "string",
-            "integer"
+            "integer",
+            "null"
           ]
         },
         "name": {
@@ -85,7 +80,8 @@
           "description": "An identifier for this Active Ingredient.",
           "type": [
             "string",
-            "integer"
+            "integer",
+            "null"
           ]
         },
         "name": {

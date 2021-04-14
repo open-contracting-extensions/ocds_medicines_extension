@@ -28,20 +28,14 @@
     "DosageForm": {
       "title": "Forma de Dosificación",
       "description": "Una forma de dosificación en la que está disponible este medicamento.",
-      "type": [
-            "string",
-            "null"
-      ],
+      "type": "string",
       "codelist": "dosageForm.csv",
       "openCodelist": true
     },
     "RouteOfAdministration": {
       "title": "Vía de Administración",
       "description": "Vía por la que se puede administrar este medicamento.",
-      "type": [
-        "string",
-        "null"
-      ],
+      "type": "string",
       "codelist": "routeOfAdministration.csv",
       "openCodelist": true
     },
@@ -55,7 +49,8 @@
           "description": "Un identificador para este contenedor.",
           "type": [
             "string",
-            "integer"
+            "integer",
+            "null"
           ]
         },
         "name": {
@@ -85,7 +80,8 @@
           "description": "Un identificador para este ingrediente activo.",
           "type": [
             "string",
-            "integer"
+            "integer",
+            "null"
           ]
         },
         "name": {
