@@ -7,6 +7,10 @@
     "en": "Extension of the OCDS standard for public medicine procurement processes",
     "es": "Extensión del estándar OCDS para los procesos de compras públicas de medicamentos"
   },
+  "documentationUrl": {
+    "en": "https://www.example.com/",
+    "es": "https://www.example.com/"
+  },
   "schemas": [
     "release-schema.json"
   ],
