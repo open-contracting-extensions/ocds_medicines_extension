@@ -101,6 +101,7 @@ This is an [example](https://www.mercadopublico.cl/Procurement/Modules/RFB/Detai
     "tender": {
       "items": [
         {
+          "id": "1",
           "medicineAttributes" : {   
             "dosageForm" :  "liquid",
             "routeOfAdministration" : "inhal",
@@ -112,7 +113,7 @@ This is an [example](https://www.mercadopublico.cl/Procurement/Modules/RFB/Detai
                 "unit" : "ml"
               }
             },
-            "activeIngredient" : [
+            "activeIngredients" : [
               {
                 "id" : 1,
                 "name" : "acetilcisteina",
@@ -138,9 +139,10 @@ This is an example of an item in the [UNOPS](https://datastudio.google.com/u/0/r
     "tender": {
       "items": [
         {
+          "id": "1",
           "medicineAttributes" : {
             "dosageForm" :  "liquid",
-            "routeOfAdministration" : "Parenteral",
+            "routeOfAdministration" : "P",
             "container" : {
               "id" : 1,
               "name" : "jar",
@@ -149,7 +151,7 @@ This is an example of an item in the [UNOPS](https://datastudio.google.com/u/0/r
                 "unit" : "ml"
               }
             },
-            "activeIngredient" : [
+            "activeIngredients" : [
               {
                 "id" : 1,
                 "name" : "Midazolam",
@@ -177,6 +179,7 @@ This is an [example](https://www.contrataciones.gov.py/licitaciones/convocatoria
     "tender": {
       "items": [
         {
+          "id": "1",
           "medicineAttributes" : {
             "dosageForm" :  "injection",
             "routeOfAdministration" : "TD",
@@ -188,7 +191,7 @@ This is an [example](https://www.contrataciones.gov.py/licitaciones/convocatoria
                 "unit" : "ml"
               }
             },
-            "activeIngredient" : [
+            "activeIngredients" : [
               {
                 "id" : 2,
                 "name" : "clorhidrato de bupivacaina",
