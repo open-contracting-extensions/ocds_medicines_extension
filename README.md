@@ -1,34 +1,21 @@
 # Medicine extension
 
-Add fields to the tender and award drug items to describe the medicine attributes, such as active ingredient, dosage, container, route of administration, brand, manufacturer, etc.
+Add medicine attributes to tender, award, or contract items to describe the drugs properties. 
 
-## Background
+## Guidance
 
-With the objective of developing a medicine extension, a study was carried out on the way in which drug purchase data is currently published in different countries, the use that users make of it, and the standards of medicines, substances and drugs that exist.
+Add the MedicineAttributes object and use the properties that are known according to the stage in which the contracting process is at:
 
-The study included interviews with 6 publishers and 4 users who relate to drug purchases in different ways such as: system maintenance, people who write the terms of reference for medicine purchases, data analysts, medicime price analyst, software developers for medicine purchase systems, advocacy and accountability groups, journalists
+* Tender: normally the active ingredient, dosage form, container, route of administration (all the medicine properties that describe the drug).
+* Award or Contract: normally the brand, manufacturer, country of origin (commercial, financial and logistics conditions).
 
-The most common questions related to medicine prices were:
+If a medicine have other attributes such as the expiration date, how the medicines have to be delivered, if they must maintain a cold chain, etc, use the generic [item attributes extension](https://gitlab.com/dncp-opendata/ocds_item_attributes_extension).
 
-<ul>
-<li>Q1: How do we know if two products are comparable?</li>
-<li>Q2: Is it possible to make price comparisons between different medicine vendors?</li>
-<li>Q3: Are the products on the price reference list?</li>
-<li>Q4: How much and at what price was it purchased and from whom?</li>
-<li>Q5: Is there a noticeable difference between the market and awarded prices?</li>
-<li>Q6: What is the average price of the public market in the last X months?</li>
-<li>Q7: Who are the bidders and what are the purchase conditions?</li>
-<li>Q8: Who was it bought from?</li>
-<li>Q9: Who buys?</li>
-<li>Q10: What is the relationship between suppliers, shareholders, laboratories and political finance?</li>
-<li>Q11: What is the evolution of prices over time?</li>
-<li>Q12: What is the manufacturer's quality, delivery time, and contract performance guarantee?</li>
-<li>Q13: How much does what was spent on this input represent against the entity's budget?</li>
-</ul>
+If a medicine has more than one active ingredient, add each one in the `activeIngredients` array.
 
-The analysis resulted in this extension.
+If a medicine is packaged in a multi-drug container, use `items.quantity` for the quantity in the container and `items.unit` for the unit.
 
-## Proposal:
+## Proposal
 
 ### Schema
 
@@ -97,37 +84,37 @@ This is an [example](https://www.mercadopublico.cl/Procurement/Modules/RFB/Detai
 | -----------            |------------------------- |
 | Acetilcisteina | ACETILCISTEINA-N 100 MG/ML SOLUCION PARA NEBULIZAR FRASCO 15-30 ML ENVASE INDIVIDUAL RESISTENTE CON SELLO QUE ASEGURE INVIOLABILIDAD DEL CONTENIDO |
 ```json
-  {
-    "tender": {
-      "items": [
-        {
-          "id": "1",
-          "medicineAttributes" : {   
-            "dosageForm" :  "liquid",
-            "routeOfAdministration" : "inhal",
-            "container" : {
-              "id" : 1,
-              "name" : "jar",
-              "capacity": {
-                "numericValue" : 15,
-                "unit" : "ml"
+{
+  "tender": {
+    "items": [
+      {
+        "id": "1",
+        "medicineAttributes": {
+          "dosageForm": "liquid",
+          "routeOfAdministration": "inhal",
+          "container": {
+            "id": 1,
+            "name": "jar",
+            "capacity": {
+              "numericValue": "15-30",
+              "unit": "ml"
+            }
+          },
+          "activeIngredients": [
+            {
+              "id": 1,
+              "name": "acetilcisteina",
+              "dosage": {
+                "numericValue": 100,
+                "unit": "ml"
               }
-            },
-            "activeIngredients" : [
-              {
-                "id" : 1,
-                "name" : "acetilcisteina",
-                "dosage" : {
-                  "numericValue" : 100,
-                  "unit" : "ml"
-                }
-              }
-            ]        
-          }
+            }
+          ]
         }
-      ]
-    }
+      }
+    ]
   }
+}
 ```
 This is an example of an item in the [UNOPS](https://datastudio.google.com/u/0/reporting/1lI9FpXAor0QmSmbZehZWmbrX4F-X1CLw/page/5UYMB?s=swplgxj_6no) system and how it would be represent with the extension.
 
@@ -135,37 +122,37 @@ This is an example of an item in the [UNOPS](https://datastudio.google.com/u/0/r
 | -----------            |------------------------- |
 | Midazolam 5mg / solucion Parenteral | Envase por un 1 ml |
 ```json
-  {
-    "tender": {
-      "items": [
-        {
-          "id": "1",
-          "medicineAttributes" : {
-            "dosageForm" :  "liquid",
-            "routeOfAdministration" : "P",
-            "container" : {
-              "id" : 1,
-              "name" : "jar",
-              "capacity": {
-                "numericValue" : 1,
-                "unit" : "ml"
+{
+  "tender": {
+    "items": [
+      {
+        "id": "1",
+        "medicineAttributes": {
+          "dosageForm": "liquid",
+          "routeOfAdministration": "P",
+          "container": {
+            "id": 1,
+            "name": "jar",
+            "capacity": {
+              "numericValue": 1,
+              "unit": "ml"
+            }
+          },
+          "activeIngredients": [
+            {
+              "id": 1,
+              "name": "Midazolam",
+              "dosage": {
+                "numericValue": 5,
+                "unit": "mg"
               }
-            },
-            "activeIngredients" : [
-              {
-                "id" : 1,
-                "name" : "Midazolam",
-                "dosage" : {
-                  "numericValue" : 5,
-                  "unit" : "mg"
-                }
-              }
-            ]
-          }
+            }
+          ]
         }
-      ]
-    }
+      }
+    ]
   }
+}
 ```
 ### More than one Active Ingredient
 
@@ -175,50 +162,50 @@ This is an [example](https://www.contrataciones.gov.py/licitaciones/convocatoria
 | -----------            |------------------------- | -----------               |  -----------          | ----------------       |
 | Clorhidrato de Bupivacaina Hiperbarica Inyectable     | clorhidrato de bupivacaina 25 mg. + dextrosa 82,5 mg. - solución inyectable | UNIDAD | VIAL | caja conteniendo 25 ampollas como minimo de ml. |
 ```json
-  {
-    "tender": {
-      "items": [
-        {
-          "id": "1",
-          "medicineAttributes" : {
-            "dosageForm" :  "injection",
-            "routeOfAdministration" : "TD",
-            "container" : {
-              "id" : 1,
-              "name" : "blister",
-              "capacity" : {
-                "numericValue" : 4,
-                "unit" : "ml"
+{
+  "tender": {
+    "items": [
+      {
+        "id": "1",
+        "medicineAttributes": {
+          "dosageForm": "injection",
+          "routeOfAdministration": "TD",
+          "container": {
+            "id": 1,
+            "name": "blister",
+            "capacity": {
+              "numericValue": 4,
+              "unit": "ml"
+            }
+          },
+          "activeIngredients": [
+            {
+              "id": 2,
+              "name": "clorhidrato de bupivacaina",
+              "dosage": {
+                "numericValue": 250,
+                "unit": "mg"
               }
             },
-            "activeIngredients" : [
-              {
-                "id" : 2,
-                "name" : "clorhidrato de bupivacaina",
-                "dosage" : {
-                  "numericValue" : 250,
-                  "unit" : "mg"
-                }
-              },
-              {
-                "id" : 3,
-                "name" : "dextrosa",
-                "dosage" : {
-                  "numericValue" : 82.5,
-                  "unit" : "mg"
-                }
+            {
+              "id": 3,
+              "name": "dextrosa",
+              "dosage": {
+                "numericValue": 82.5,
+                "unit": "mg"
               }
-            ]
-          },
-          "quantity" : 25,
-          "unit" : {
-            "id" : "UNI",
-            "name" : "Unidad"
-          }
+            }
+          ]
+        },
+        "quantity": 25,
+        "unit": {
+          "id": "UNI",
+          "name": "Unidad"
         }
-      ]
-    }
+      }
+    ]
   }
+}
 ```
 
 ## Related Standards
@@ -236,7 +223,6 @@ In addition, the following standards for the identification of drugs were analyz
 | [Catálogo CBM](http://www.csg.gob.mx/contenidos/priorizacion/cuadro-basico/med/catalogos.html)| [Consejo de Salubridad General de México](http://www.csg.gob.mx/index.html) | medicine list|
 | [UNSPSC](https://ncbo.bioontology.org/about-ncbo) | [United Nations](https://www.un.org/en/) |classification of products and services|
 | [Catálogo de Productos Farmacéuticos](http://observatorio.digemid.minsa.gob.pe/Precios/ProcesoL/Catalogo/CatalogoProductos.aspx)|[Ministerio de Salud de Perú](https://www.gob.pe/minsa/)| classification of products and services|
-
 
 ## Issues
 
