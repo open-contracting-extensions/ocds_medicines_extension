@@ -6,10 +6,11 @@
       "type": "object",
       "properties": {
         "numericValue": {
-          "title": "Valor numerico",
-          "description": "El valor numerico de la Dosis.",
+          "title": "Valor numérico",
+          "description": "El valor numérico de la Dosis. Puede ser un rango de números, e.g. '10-25'",
           "type": [
-            "integer",
+            "string",
+            "number",
             "null"
           ]
         },

@@ -7,9 +7,10 @@
       "properties": {
         "numericValue": {
           "title": "Numeric Value",
-          "description": "The numeric value of the Dosage.",
+          "description": "The numeric value of the Dosage. It can be a range of numbers, e.g. '10-25'",
           "type": [
-            "integer",
+            "string",
+            "number",
             "null"
           ]
         },
