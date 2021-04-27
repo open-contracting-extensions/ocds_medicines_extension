@@ -9,70 +9,11 @@ Add the MedicineAttributes object and use the properties that are known accordin
 * Tender: normally the active ingredient, dosage form, container, route of administration (all the medicine properties that describe the drug).
 * Award or Contract: normally the brand, manufacturer, country of origin (commercial, financial and logistics conditions).
 
-If a medicine have other attributes such as the expiration date, how the medicines have to be delivered, if they must maintain a cold chain, etc, use the generic [item attributes extension](https://gitlab.com/dncp-opendata/ocds_item_attributes_extension).
+If a medicine has other attributes such as the expiration date, how the medicines have to be delivered, if they must maintain a cold chain, etc, use the generic [item attributes extension](https://gitlab.com/dncp-opendata/ocds_item_attributes_extension).
 
 If a medicine has more than one active ingredient, add each one in the `activeIngredients` array.
 
 If a medicine is packaged in a multi-drug container, use `items.quantity` for the quantity in the container and `items.unit` for the unit.
-
-## Proposal
-
-### Schema
-
-* Dosage {Object}
-    * numericValue (integer)
-    * unit (string) (codelist)
-
-* DosageForm (string) (codeList)
-
-* RouteOfAdministration (string) (codelist)
-
-* Container {Object}
-    * id (string, integer)
-    * name (string)
-    * capacity 
-        * $ref : #/definitions/Dosage
-
-* ActiveIngredient {Object}
-    * id (string, integer)
-    * name (string)
-    * dosage 
-        * $ref : #/definitions/Dosage
-
-* Item {Object}
-    * MedicineAttributes {Object}
-        * activeIngredients (array)
-            * $ref : #/definitions/ActiveIngredient
-        * dosageForm
-            * $ref: #/definitions/DosageForm
-        * routeOfAdministration 
-            * $ref: #/definitions/RouteOfAdministration
-        * container 
-            * $ref: #/definitions/Container
-        * brand
-            * $ref: #/definitions/Brand
-        * manufacturer
-            * $ref: #/definitions/Manufacturer
-        * countryOfOrigin
-            * $ref: #/definitions/CountryOfOrigin
-
-Where:
-
-| Code                  | Title                     |  Description                                                 |
-| -----------           | -----------               |  -----------                                                 |
-| dosage                | Dosage                    | The value and unit of the Dosage, Concentration or Capacity  |
-| numericValue          | Numeric Value             | The numeric value of the Dosage                              |
-| unit                  | Unit                      | The unit of measurement of the Dosage                        |                           
-| dosageForm            | Dosage Form               | A dosage form in which this medicine is available            |
-| routeOfAdministration | Route of Administration   | A route by which this medicine can be given                  |
-| container             | Container                 | The container or presentation form of the medicine  |
-| id                    | Container ID              | An identifier for this Container |
-| name                  | Container Name            | The name of the container |
-| capacity              | Container Capacity        | The Capacity of the container |
-| activeIngredient      | Active Ingredient         | Describe an Active Ingredient and dosage for the drug, generally chemical compounds and / or biological substances |
-| id                    | Active Ingredient ID      | An identifier for this Active Ingredient |
-| name                  | Active Ingredient Name    | The name of the Active Ingredient. It refers to the generic name as in the International Common Denomination (INN). This field is the same as the 'name' attribute in the ATC / DDD standard. Also known as: generic name, drug, substance name, active substance |
-| medicineAttributes    | Medicine Attributes       | Describe the attributes and properties of chemical or biological substances used as medical therapy, which has a physiological effect on an organism. Here the term drug is used interchangeably with the term medicine, although clinical knowledge makes a clear difference between them |
 
 ## Examples
 
@@ -210,7 +151,8 @@ This is an [example](https://www.contrataciones.gov.py/licitaciones/convocatoria
 
 ## Related Standards
 
-In addition, the following standards for the identification of drugs were analyzed:
+In addition, the following standards were analyzed for the identification of drugs that are commonly used in the data on public medicine purchases. 
+Each standard is used for the classification, designation or listing of drugs in different countries.
 
 | Standard        | Maintains       |  Purpose                        |
 | -----------     | -----------    |  -----------                      |
