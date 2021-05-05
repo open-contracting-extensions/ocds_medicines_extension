@@ -26,34 +26,11 @@
         }
       }
     },
-    "DosageForm": {
-      "title": "Dosage Form",
-      "description": " A dosage form in which this medicine is available.",
-      "type": "string",
-      "codelist": "dosageForm.csv",
-      "openCodelist": true
-    },
-    "RouteOfAdministration": {
-      "title": "Route of Administration",
-      "description": "A route by which this medicine can be given.",
-      "type": "string",
-      "codelist": "routeOfAdministration.csv",
-      "openCodelist": true
-    },
     "Container": {
       "title": "Container",
       "description": "The container or presentation form of the medicine.",
       "type": "object",
       "properties": {
-        "id": {
-          "title": "Container ID",
-          "description": "An identifier for this Container.",
-          "type": [
-            "string",
-            "integer",
-            "null"
-          ]
-        },
         "name": {
           "title": "Container Name",
           "description": "The name of the container.",
@@ -76,15 +53,6 @@
       "description": "Describe an Active Ingredient and dosage for the drug, generally chemical compounds and / or biological substances.",
       "type": "object",
       "properties": {
-        "id": {
-          "title": "Active Ingredient ID",
-          "description": "An identifier for this Active Ingredient.",
-          "type": [
-            "string",
-            "integer",
-            "null"
-          ]
-        },
         "name": {
           "title": "Active Ingredient Name",
           "description": "The name of the Active Ingredient. It refers to the generic name as in the International Common Denomination (INN). This field is the same as the 'name' attribute in the ATC / DDD standard. Also known as: generic name, drug, substance name, active substance. ",
@@ -109,23 +77,34 @@
           "title": "Active Ingredients",
           "description": "An array of Active Ingredients for the medicine.",
           "type": "array",
+          "wholeListMerge": "true",
           "items": {
             "$ref": "#/definitions/ActiveIngredient"
           }
         },
         "dosageForm": {
-          "title": "Dosage",
-          "description": "A dosage form in which this medicine is available.",
-          "$ref": "#/definitions/DosageForm"
+          "title": "Dosage Form",
+          "description": "A dosage form in which this medicine is available, from the dosageForm codelist.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "codelist": "dosageForm.csv",
+          "openCodelist": true
         },
-        "routeOfAdministration": {
-          "title": "Route of Administration",
-          "description": "A route by which this medicine can be given.",
-          "$ref": "#/definitions/RouteOfAdministration"
+        "administrationRoute": {
+          "title": "Administration Route",
+          "description": "A route by which this medicine can be given, from the administrationRoute codelist",
+          "type": [
+            "string",
+            "null"
+          ],
+          "codelist": "administrationRoute.csv",
+          "openCodelist": true
         },
         "container": {
           "title": "Container",
-          "description": "The container or presentation form of the medicine.",
+          "description": "The container or presentation form of the medicine, from the container codelist.",
           "$ref": "#/definitions/Container"
         }
       }

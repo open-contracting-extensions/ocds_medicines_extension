@@ -16,7 +16,7 @@
   ],
   "codelists": [
     "dosageForm.csv",
-    "routeOfAdministration.csv",
+    "administrationRoute.csv",
     "unitDosage.csv",
     "container.csv"
   ],

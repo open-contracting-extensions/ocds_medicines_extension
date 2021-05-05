@@ -19,7 +19,7 @@ If a medicine is packaged in a multi-drug container, use `items.quantity` for th
 
 ### One Active Ingredient
 
-This is an [example](https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?qs=OE1kSVnLUBVxS5IkXPNLRQ==) of an item of a drug procurement process in Chile, and its representation in the extension. 
+This is an [example](https://api.mercadopublico.cl/APISOCDS/ocds/tender/734-82-LP14) of an item of a drug procurement process in Chile, and its representation in the extension. 
 
 | Description            | Minimum dispensing unit |
 | -----------            |------------------------- |
@@ -32,9 +32,8 @@ This is an [example](https://www.mercadopublico.cl/Procurement/Modules/RFB/Detai
         "id": "1",
         "medicineAttributes": {
           "dosageForm": "liquid",
-          "routeOfAdministration": "inhal",
+          "administrationRoute": "inhal",
           "container": {
-            "id": 1,
             "name": "jar",
             "capacity": {
               "numericValue": "15-30",
@@ -43,7 +42,6 @@ This is an [example](https://www.mercadopublico.cl/Procurement/Modules/RFB/Detai
           },
           "activeIngredients": [
             {
-              "id": 1,
               "name": "acetilcisteina",
               "dosage": {
                 "numericValue": 100,
@@ -70,9 +68,8 @@ This is an example of an item in the [UNOPS](https://datastudio.google.com/u/0/r
         "id": "1",
         "medicineAttributes": {
           "dosageForm": "liquid",
-          "routeOfAdministration": "P",
+          "administrationRoute": "P",
           "container": {
-            "id": 1,
             "name": "jar",
             "capacity": {
               "numericValue": 1,
@@ -81,7 +78,6 @@ This is an example of an item in the [UNOPS](https://datastudio.google.com/u/0/r
           },
           "activeIngredients": [
             {
-              "id": 1,
               "name": "Midazolam",
               "dosage": {
                 "numericValue": 5,
@@ -110,9 +106,8 @@ This is an [example](https://www.contrataciones.gov.py/licitaciones/convocatoria
         "id": "1",
         "medicineAttributes": {
           "dosageForm": "injection",
-          "routeOfAdministration": "TD",
+          "administrationRoute": "TD",
           "container": {
-            "id": 1,
             "name": "blister",
             "capacity": {
               "numericValue": 4,
@@ -121,7 +116,6 @@ This is an [example](https://www.contrataciones.gov.py/licitaciones/convocatoria
           },
           "activeIngredients": [
             {
-              "id": 2,
               "name": "clorhidrato de bupivacaina",
               "dosage": {
                 "numericValue": 250,
@@ -129,7 +123,6 @@ This is an [example](https://www.contrataciones.gov.py/licitaciones/convocatoria
               }
             },
             {
-              "id": 3,
               "name": "dextrosa",
               "dosage": {
                 "numericValue": 82.5,
