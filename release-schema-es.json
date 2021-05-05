@@ -77,7 +77,7 @@
           "title": "Ingrediente Activo",
           "description": "Una lista de Ingredientes Activos para el medicamento.",
           "type": "array",
-          "wholeListMerge": "true",
+          "wholeListMerge": true,
           "items": {
             "$ref": "#/definitions/ActiveIngredient"
           }

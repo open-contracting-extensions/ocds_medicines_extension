@@ -77,7 +77,7 @@
           "title": "Active Ingredients",
           "description": "An array of Active Ingredients for the medicine.",
           "type": "array",
-          "wholeListMerge": "true",
+          "wholeListMerge": true,
           "items": {
             "$ref": "#/definitions/ActiveIngredient"
           }
