@@ -7,7 +7,7 @@
       "properties": {
         "numericValue": {
           "title": "Numeric Value",
-          "description": "The numeric value of the Dosage. It can be a range of numbers, e.g. '10-25'",
+          "description": "The numeric value of the Dosage. It can be a range of numbers, e.g. '10-25'.",
           "type": [
             "string",
             "number",
@@ -16,7 +16,7 @@
         },
         "unit": {
           "title": "Unit",
-          "description": "The unit of measurement of the Dosage. ",
+          "description": "The unit of measurement of the Dosage, from the unitDosage codelist.",
           "type": [
             "string",
             "null"
@@ -68,14 +68,11 @@
         }
       }
     },
-    "MedicineAttributes": {
-      "title": "Medicine Attributes",
-      "description": "Describe the attributes and properties of chemical or biological substances used as medical therapy, which has a physiological effect on an organism. Here the term drug is used interchangeably with the term medicine, although clinical knowledge makes a clear difference between them.",
-      "type": "object",
+    "Item": {
       "properties": {
         "activeIngredients": {
           "title": "Active Ingredients",
-          "description": "An array of Active Ingredients for the medicine.",
+          "description": "An array of Active Ingredients for the medicine, generally chemical compounds and / or biological substances.",
           "type": "array",
           "wholeListMerge": true,
           "items": {
@@ -94,7 +91,7 @@
         },
         "administrationRoute": {
           "title": "Administration Route",
-          "description": "A route by which this medicine can be given, from the administrationRoute codelist",
+          "description": "A route by which this medicine can be given, from the administrationRoute codelist.",
           "type": [
             "string",
             "null"
@@ -106,15 +103,6 @@
           "title": "Container",
           "description": "The container or presentation form of the medicine, from the container codelist.",
           "$ref": "#/definitions/Container"
-        }
-      }
-    },
-    "Item": {
-      "properties": {
-        "medicineAttributes": {
-          "title": "Medicine Attributes",
-          "description": "Describe the attributes and properties of chemical or biological substances used as medical therapy, which has a physiological effect on an organism. Here the term drug is used interchangeably with the term medicine, although clinical knowledge makes a clear difference between them.",
-          "$ref": "#/definitions/MedicineAttributes"
         }
       }
     }
