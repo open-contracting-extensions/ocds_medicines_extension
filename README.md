@@ -1,19 +1,25 @@
 # Medicine extension
 
-Add medicine attributes to tender, award, or contract items to describe the drugs properties. 
+Add a medicine attributes object to the  Item object to describe specific details about a medicine item.
 
 ## Guidance
 
-Add the MedicineAttributes object and use the properties that are known according to the stage in which the contracting process is at:
+This extension is intended to be used in the tender, award, or contract items that represent a medicine, to add more specific details that a medicine item may have. 
 
-* Tender: normally the active ingredient, dosage form, container, route of administration (all the medicine properties that describe the drug).
-* Award or Contract: normally the brand, manufacturer, country of origin (commercial, financial and logistics conditions).
+To use the extension, add the medicine attributes at the item level and set the properties that are known:
 
-If a medicine has other attributes such as the expiration date, how the medicines have to be delivered, if they must maintain a cold chain, etc, use the generic [item attributes extension](https://gitlab.com/dncp-opendata/ocds_item_attributes_extension).
+* active ingredient: chemical compounds and/or biological substances
+* dosage form: dosage form in which this medicine is available
+* container: container or presentation form of the medicine
+* administration route: route by which this medicine can be given
 
-If a medicine has more than one active ingredient, add each one in the `activeIngredients` array.
+If a contracting process is in the award or contract stage, it’s possible to know more information about the medicine, such as the brand, the manufacturer, the country of origin, the expiration date, if they must maintain a cold chain and all the other commercial, financial and logistical conditions. Use the generic item attributes extension for all the cases where the medicine item has other attributes not included in this extension.
 
-If a medicine is packaged in a multi-drug container, use `items.quantity` for the quantity in the container and `items.unit` for the unit.
+If a medicine item has more than one active ingredient, add each one in the `activeIngredients` array.
+
+If a medicine item is packaged in a multi-drug container, use `items.quantity` for the quantity in the container and `items.unit` for the unit.
+
+## Codelist
 
 ## Examples
 
@@ -30,26 +36,30 @@ This is an [example](https://api.mercadopublico.cl/APISOCDS/ocds/tender/734-82-L
     "items": [
       {
         "id": "1",
-        "medicineAttributes": {
-          "dosageForm": "liquid",
-          "administrationRoute": "inhal",
-          "container": {
-            "name": "jar",
-            "capacity": {
-              "numericValue": "15-30",
+        "description": "Acetilcisteina",
+        "classification": {
+          "id": "51161701",
+          "scheme": "UNSPSC",
+          "uri": "https://apis.mercadopublico.cl/OCDS/data/productos/categoria/51161701"
+        },
+        "dosageForm": "liquid",
+        "administrationRoute": "inhal",
+        "container": {
+          "name": "jar",
+          "capacity": {
+            "numericValue": "15-30",
+            "unit": "ml"
+         }
+        },
+        "activeIngredients": [
+          {
+            "name": "acetilcisteina",
+            "dosage": {
+              "numericValue": 100,
               "unit": "ml"
             }
-          },
-          "activeIngredients": [
-            {
-              "name": "acetilcisteina",
-              "dosage": {
-                "numericValue": 100,
-                "unit": "ml"
-              }
-            }
-          ]
-        }
+          }
+        ]
       }
     ]
   }
@@ -66,26 +76,25 @@ This is an example of an item in the [UNOPS](https://datastudio.google.com/u/0/r
     "items": [
       {
         "id": "1",
-        "medicineAttributes": {
-          "dosageForm": "liquid",
-          "administrationRoute": "P",
-          "container": {
-            "name": "jar",
-            "capacity": {
-              "numericValue": 1,
-              "unit": "ml"
+        "description": "Midazolam 5mg / solucion Parenteral",
+        "dosageForm": "liquid",
+        "administrationRoute": "P",
+        "container": {
+          "name": "jar",
+          "capacity": {
+            "numericValue": 1,
+            "unit": "ml"
+          }
+        },
+        "activeIngredients": [
+          {
+            "name": "Midazolam",
+            "dosage": {
+              "numericValue": 5,
+              "unit": "mg"
             }
-          },
-          "activeIngredients": [
-            {
-              "name": "Midazolam",
-              "dosage": {
-                "numericValue": 5,
-                "unit": "mg"
-              }
-            }
-          ]
-        }
+          }
+        ]
       }
     ]
   }
@@ -104,33 +113,31 @@ This is an [example](https://www.contrataciones.gov.py/licitaciones/convocatoria
     "items": [
       {
         "id": "1",
-        "medicineAttributes": {
-          "dosageForm": "injection",
-          "administrationRoute": "TD",
-          "container": {
-            "name": "blister",
-            "capacity": {
-              "numericValue": 4,
-              "unit": "ml"
+        "dosageForm": "injection",
+        "administrationRoute": "TD",
+        "container": {
+          "name": "blister",
+          "capacity": {
+            "numericValue": 4,
+            "unit": "ml"
+          }
+        },
+        "activeIngredients": [
+          {
+            "name": "clorhidrato de bupivacaina",
+            "dosage": {
+              "numericValue": 250,
+              "unit": "mg"
             }
           },
-          "activeIngredients": [
-            {
-              "name": "clorhidrato de bupivacaina",
-              "dosage": {
-                "numericValue": 250,
-                "unit": "mg"
-              }
-            },
-            {
-              "name": "dextrosa",
-              "dosage": {
-                "numericValue": 82.5,
-                "unit": "mg"
-              }
+          {
+            "name": "dextrosa",
+            "dosage": {
+              "numericValue": 82.5,
+              "unit": "mg"
             }
-          ]
-        },
+          }
+        ],
         "quantity": 25,
         "unit": {
           "id": "UNI",
@@ -144,8 +151,7 @@ This is an [example](https://www.contrataciones.gov.py/licitaciones/convocatoria
 
 ## Related Standards
 
-In addition, the following standards were analyzed for the identification of drugs that are commonly used in the data on public medicine purchases. 
-Each standard is used for the classification, designation or listing of drugs in different countries.
+The fields, definitions and codelists used in this extension are based on the following standards that are commonly used in the data on public medicine purchases. Each standard is used for the classification, designation or listing of drugs in different countries.
 
 | Standard        | Maintains       |  Purpose                        |
 | -----------     | -----------    |  -----------                      |
