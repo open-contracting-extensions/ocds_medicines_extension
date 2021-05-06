@@ -49,7 +49,7 @@ This is an [example](https://api.mercadopublico.cl/APISOCDS/ocds/tender/734-82-L
           "capacity": {
             "numericValue": "15-30",
             "unit": "ml"
-         }
+          }
         },
         "activeIngredients": [
           {
