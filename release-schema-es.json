@@ -1,31 +1,5 @@
 {
   "definitions": {
-    "Dosage": {
-      "title": "Dosis",
-      "description": "El valor y la unidad de la Dosificación, Concentración o Capacidad.",
-      "type": "object",
-      "properties": {
-        "numericValue": {
-          "title": "Valor numérico",
-          "description": "El valor numérico de la Dosis. Puede ser un rango de números, e.g. '10-25'",
-          "type": [
-            "string",
-            "number",
-            "null"
-          ]
-        },
-        "unit": {
-          "title": "Unidad",
-          "description": "La unidad de medida de la Dosis.",
-          "type": [
-            "string",
-            "null"
-          ],
-          "codelist": "unitDosage.csv",
-          "openCodelist": true
-        }
-      }
-    },
     "Container": {
       "title": "Envase",
       "description": "El envase o forma de presentación del medicamento.",
@@ -44,7 +18,7 @@
         "capacity": {
           "title": "Capacidad del contenedor",
           "description": "La capacidad del contenedor del medicamento.",
-          "$ref": "#/definitions/Dosage"
+          "$ref": "#/definitions/Weight"
         }
       }
     },
@@ -55,7 +29,7 @@
       "properties": {
         "name": {
           "title": "Nombre del Ingrediente Activo",
-          "description": "Se refiere al nombre genérico como en la Denominación Común Internacional (DCI). Este campo es el mismo que el atributo 'nombre' en el estándar ATC / DDD. Esto también se denomina normalmente: nombre genérico, fármaco, nombre de la sustancia, sustancia activa.",
+          "description": "El nombre del ingrediente activo. Se refiere al nombre genérico como en la Denominación Común Internacional (DCI). Este campo es el mismo que el atributo 'nombre' en el estándar ATC / DDD. Esto también se denomina normalmente: nombre genérico, fármaco, nombre de la sustancia, sustancia activa.",
           "type": [
             "string",
             "null"
@@ -64,14 +38,11 @@
         "dosage": {
           "title": "Dosis del Ingrediente Activo",
           "description": "La dosis o potencia del Ingrediente Activo.",
-          "$ref": "#/definitions/Dosage"
+          "$ref": "#/definitions/Weight"
         }
       }
     },
-    "MedicineAttributes": {
-      "title": "Atributos de Medicina",
-      "description": "Describir los atributos y propiedades de las sustancias químicas o biológicas utilizadas como terapia médica, que tienen un efecto fisiológico en un organismo. Aquí el término fármaco se usa indistintamente con el término medicina, aunque el conocimiento clínico marca una clara diferencia entre ellos.",
-      "type": "object",
+    "Item": {
       "properties": {
         "activeIngredients": {
           "title": "Ingrediente Activo",
@@ -94,7 +65,7 @@
         },
         "administrationRoute": {
           "title": "Vía de Administración",
-          "description": "Vía por la que se puede administrar este medicamento, de la lista de códigos de administrationRoute",
+          "description": "Vía por la que se puede administrar este medicamento, de la lista de códigos de administrationRoute.",
           "type": [
             "string",
             "null"
@@ -104,17 +75,8 @@
         },
         "container": {
           "title": "Contenedor",
-          "description": "El envase o forma de presentación del medicamento.",
+          "description": "El envase o forma de presentación del medicamento, de la lista de códigos de container.",
           "$ref": "#/definitions/Container"
-        }
-      }
-    },
-    "Item": {
-      "properties": {
-        "medicineAttributes": {
-          "title": "Atributos de Medicina",
-          "description": "Describir los atributos y propiedades de las sustancias químicas o biológicas utilizadas como terapia médica, que tienen un efecto fisiológico en un organismo. Aquí el término fármaco se usa indistintamente con el término medicina, aunque el conocimiento clínico marca una clara diferencia entre ellos.",
-          "$ref": "#/definitions/MedicineAttributes"
         }
       }
     }

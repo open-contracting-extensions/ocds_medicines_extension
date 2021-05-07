@@ -1,31 +1,5 @@
 {
   "definitions": {
-    "Dosage": {
-      "title": "Dosage",
-      "description": "The value and unit of the Dosage, Concentration or Capacity.",
-      "type": "object",
-      "properties": {
-        "numericValue": {
-          "title": "Numeric Value",
-          "description": "The numeric value of the Dosage. It can be a range of numbers, e.g. '10-25'.",
-          "type": [
-            "string",
-            "number",
-            "null"
-          ]
-        },
-        "unit": {
-          "title": "Unit",
-          "description": "The unit of measurement of the Dosage, from the unitDosage codelist.",
-          "type": [
-            "string",
-            "null"
-          ],
-          "codelist": "unitDosage.csv",
-          "openCodelist": true
-        }
-      }
-    },
     "Container": {
       "title": "Container",
       "description": "The container or presentation form of the medicine.",
@@ -43,19 +17,19 @@
         },
         "capacity": {
           "title": "Container Capacity",
-          "description": "The Capacity of the container.",
-          "$ref": "#/definitions/Dosage"
+          "description": "The capacity of the container.",
+          "$ref": "#/definitions/Weight"
         }
       }
     },
     "ActiveIngredient": {
       "title": "Active Ingredient",
-      "description": "Describe an Active Ingredient and dosage for the drug, generally chemical compounds and / or biological substances.",
+      "description": "Describe an active ingredient and dosage for the drug, generally chemical compounds and / or biological substances.",
       "type": "object",
       "properties": {
         "name": {
           "title": "Active Ingredient Name",
-          "description": "The name of the Active Ingredient. It refers to the generic name as in the International Common Denomination (INN). This field is the same as the 'name' attribute in the ATC / DDD standard. Also known as: generic name, drug, substance name, active substance. ",
+          "description": "The name of the active ingredient. It refers to the generic name as in the International Common Denomination (INN). This field is the same as the 'name' attribute in the ATC / DDD standard. Also known as: generic name, drug, substance name, active substance.",
           "type": [
             "string",
             "null"
@@ -63,8 +37,8 @@
         },
         "dosage": {
           "title": "Active Ingredient Dosage",
-          "description": "The dosage or potency of the Active Ingredient. ",
-          "$ref": "#/definitions/Dosage"
+          "description": "The dosage or potency of the active ingredient.",
+          "$ref": "#/definitions/Weight"
         }
       }
     },
@@ -72,7 +46,7 @@
       "properties": {
         "activeIngredients": {
           "title": "Active Ingredients",
-          "description": "An array of Active Ingredients for the medicine, generally chemical compounds and / or biological substances.",
+          "description": "An array of active ingredients for the medicine, generally chemical compounds and / or biological substances.",
           "type": "array",
           "wholeListMerge": true,
           "items": {

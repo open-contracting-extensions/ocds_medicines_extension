@@ -1,25 +1,33 @@
 # Medicine extension
 
-Add a medicine attributes object to the  Item object to describe specific details about a medicine item.
+Add a medicine attributes object to the `items` object to describe specific details about a medicine item.
 
 ## Guidance
 
-This extension is intended to be used in the tender, award, or contract items that represent a medicine, to add more specific details that a medicine item may have. 
+This extension is based on research with 4 data users and 6 data publishers including public entities, journalists, medicine price analysts and software developers for medicine purchase systems from different countries. There are some differences between the names of the attributes in those countries, but the fields in this extension are the most used and defined mainly by [ATC](https://www.whocc.no/atc_ddd_index/) and [Schema.org](https://schema.org/Drug).
 
-To use the extension, add the medicine attributes at the item level and set the properties that are known:
+This extension is intended to be used in the tender, award, or contract items that represent a medicine, to add more specific details that a medicine item may have. To use it, add the medicine attributes at the item level and set the properties that are known:
 
 * active ingredient: chemical compounds and/or biological substances
 * dosage form: dosage form in which this medicine is available
 * container: container or presentation form of the medicine
 * administration route: route by which this medicine can be given
 
-If a contracting process is in the award or contract stage, it’s possible to know more information about the medicine, such as the brand, the manufacturer, the country of origin, the expiration date, if they must maintain a cold chain and all the other commercial, financial and logistical conditions. Use the generic item attributes extension for all the cases where the medicine item has other attributes not included in this extension.
+For the active ingredient dosage and the container capacity, it’s recommended to use the [ATC](https://www.whocc.no/atc_ddd_index/) scheme in `capacity.unit` and `dosage.unit`.
+
+If a contracting process is in the award or contract stage, it’s possible to know more information about the medicine, such as the brand, the manufacturer, the country of origin, the expiration date, if they must maintain a cold chain and all the other commercial, financial and logistical conditions. Use the [generic item attributes](https://gitlab.com/dncp-opendata/ocds_item_attributes_extension) extension for all the cases where the medicine item has other attributes not included in this extension.
 
 If a medicine item has more than one active ingredient, add each one in the `activeIngredients` array.
 
 If a medicine item is packaged in a multi-drug container, use `items.quantity` for the quantity in the container and `items.unit` for the unit.
 
-## Codelist
+## Codelists
+
+The administrationRoute.csv codelist is based on the [ATC list](https://www.whocc.no/atc_ddd_index/) (see route of administration).
+
+The dosageForm.csv codelist is based on the values in the list beginning on [Page 27 of the MSH International Medical Products Price Guide](https://www.msh.org/resources/international-medical-products-price-guide).
+
+The container.csv codelist is based on the list on
 
 ## Examples
 
@@ -47,16 +55,22 @@ This is an [example](https://api.mercadopublico.cl/APISOCDS/ocds/tender/734-82-L
         "container": {
           "name": "jar",
           "capacity": {
-            "numericValue": "15-30",
-            "unit": "ml"
+            "unit": {
+              "scheme": "ATC",
+              "id": "ml"
+            },
+            "quantity": "15-30"
           }
         },
         "activeIngredients": [
           {
             "name": "acetilcisteina",
             "dosage": {
-              "numericValue": 100,
-              "unit": "ml"
+              "unit": {
+                "scheme": "ATC",
+                "id": "ml"
+              },
+              "quantity": 100
             }
           }
         ]
@@ -82,16 +96,22 @@ This is an example of an item in the [UNOPS](https://datastudio.google.com/u/0/r
         "container": {
           "name": "jar",
           "capacity": {
-            "numericValue": 1,
-            "unit": "ml"
+            "unit": {
+              "scheme": "ATC",
+              "id": "ml"
+            },
+            "quantity": 1
           }
         },
         "activeIngredients": [
           {
             "name": "Midazolam",
             "dosage": {
-              "numericValue": 5,
-              "unit": "mg"
+              "unit": {
+                "scheme": "ATC",
+                "id": "mg"
+              },
+              "quantity": 5
             }
           }
         ]
@@ -118,23 +138,32 @@ This is an [example](https://www.contrataciones.gov.py/licitaciones/convocatoria
         "container": {
           "name": "blister",
           "capacity": {
-            "numericValue": 4,
-            "unit": "ml"
+            "unit": {
+              "scheme": "ATC",
+              "id": "ml"
+            },
+            "quantity": 4
           }
         },
         "activeIngredients": [
           {
             "name": "clorhidrato de bupivacaina",
             "dosage": {
-              "numericValue": 250,
-              "unit": "mg"
+              "unit": {
+                "scheme": "ATC",
+                "id": "mg"
+              },
+              "quantity": 250
             }
           },
           {
             "name": "dextrosa",
             "dosage": {
-              "numericValue": 82.5,
-              "unit": "mg"
+              "unit": {
+                "scheme": "ATC",
+                "id": "mg"
+              },
+              "quantity": 82.5
             }
           }
         ],
@@ -167,6 +196,4 @@ The fields, definitions and codelists used in this extension are based on the fo
 
 ## Issues
 
-Report issues for this extension 
-in the [ocds-extensions repository](https://github.com/open-contracting/ocds-extensions/issues), 
-putting the extension's name in the issue's title.
+Report issues for this extension in the [ocds-extensions repository](https://github.com/open-contracting/ocds-extensions/issues), putting the extension's name in the issue's title.
