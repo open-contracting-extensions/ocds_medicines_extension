@@ -96,6 +96,7 @@
           "title": "Active Ingredients",
           "description": "An array of active ingredients for the medicine, generally chemical compounds and / or biological substances.",
           "type": "array",
+          "minItems": 1,
           "uniqueItems": true,
           "wholeListMerge": true,
           "items": {
