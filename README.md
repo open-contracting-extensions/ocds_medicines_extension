@@ -59,7 +59,7 @@ This is an [example](https://api.mercadopublico.cl/APISOCDS/ocds/tender/734-82-L
               "scheme": "ATC",
               "id": "ml"
             },
-            "quantity": "15-30"
+            "quantity": "[15,30]"
           }
         },
         "activeIngredients": [
