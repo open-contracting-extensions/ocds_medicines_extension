@@ -1,10 +1,10 @@
 # Medicine extension
 
-Add a medicine attributes object to the `items` object to describe specific details about a medicine item.
+Add medicine attributes to the `items` object to describe specific details about a medicine item.
 
 ## Guidance
 
-This extension is based on research with 4 data users and 6 data publishers including public entities, journalists, medicine price analysts and software developers for medicine purchase systems from different countries. There are some differences between the names of the attributes in those countries, but the fields in this extension are the most used and defined mainly by [ATC](https://www.whocc.no/atc_ddd_index/) and [Schema.org](https://schema.org/Drug).
+This extension is based on research with 4 data users and 6 data publishers including public entities, journalists, medicine price analysts and software developers for medicine purchase systems from 9 countries. There are some differences between the names of the attributes in those countries, but the fields in this extension are the most used and defined mainly by [ATC](https://www.whocc.no/atc_ddd_index/) and [Schema.org](https://schema.org/Drug).
 
 This extension is intended to be used in the tender, award, or contract items that represent a medicine, to add more specific details that a medicine item may have. To use it, add the medicine attributes at the item level and set the properties that are known:
 
