@@ -20,7 +20,8 @@
           ],
           "pattern": "^[()\\[\\]][0-9]+,[0-9]+[()\\[\\]]$"
         }
-      }
+      },
+      "minProperties": 1
     },
     "SimpleUnit": {
       "title": "Simple Unit",
@@ -35,7 +36,8 @@
             "null"
           ],
           "codelist": "unitClassificationScheme.csv",
-          "openCodelist": true
+          "openCodelist": true,
+          "minLength": 1
         },
         "id": {
           "title": "ID",
@@ -44,9 +46,11 @@
             "string",
             "null"
           ],
-          "versionId": true
+          "versionId": true,
+          "minLength": 1
         }
-      }
+      },
+      "minProperties": 1
     },
     "Container": {
       "title": "Container",
@@ -61,14 +65,16 @@
             "null"
           ],
           "codelist": "container.csv",
-          "openCodelist": true
+          "openCodelist": true,
+          "minLength": 1
         },
         "capacity": {
           "title": "Container Capacity",
           "description": "The capacity of the container.",
           "$ref": "#/definitions/Weight"
         }
-      }
+      },
+      "minProperties": 1
     },
     "ActiveIngredient": {
       "title": "Active Ingredient",
@@ -81,14 +87,16 @@
           "type": [
             "string",
             "null"
-          ]
+          ],
+          "minLength": 1
         },
         "dosage": {
           "title": "Active Ingredient Dosage",
           "description": "The dosage or potency of the active ingredient.",
           "$ref": "#/definitions/Weight"
         }
-      }
+      },
+      "minProperties": 1
     },
     "Item": {
       "properties": {
@@ -111,7 +119,8 @@
             "null"
           ],
           "codelist": "dosageForm.csv",
-          "openCodelist": true
+          "openCodelist": true,
+          "minLength": 1
         },
         "administrationRoute": {
           "title": "Administration Route",
@@ -121,7 +130,8 @@
             "null"
           ],
           "codelist": "administrationRoute.csv",
-          "openCodelist": true
+          "openCodelist": true,
+          "minLength": 1
         },
         "container": {
           "title": "Container",
