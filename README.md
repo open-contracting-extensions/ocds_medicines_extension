@@ -1,39 +1,38 @@
 # Medicine extension
 
-Add medicine attributes to the `items` object to describe specific details about a medicine item.
+Add attributes to the `Item` object to describe specific details about a medicine item.
+
+## Background
+
+This extension is based on research with 4 data users and 6 data publishers including public entities, journalists, medicine price analysts, and software developers for medicine purchase systems from 9 countries from Latin America, Europe, and Africa. 
+
+The extension includes the most used fields in different countries. The field names are standardized according to the [Anatomical, Therapeutic, Chemical classification system (ATC)](https://www.whocc.no/atc_ddd_index/), developed by the World Health Organization, and the Drug definition by [Schema.org](https://schema.org/Drug).
 
 ## Guidance
 
-This extension is based on research with 4 data users and 6 data publishers including public entities, journalists, medicine price analysts and software developers for medicine purchase systems from 9 countries. There are some differences between the names of the attributes in those countries, but the fields in this extension are the most used and defined mainly by [ATC](https://www.whocc.no/atc_ddd_index/) and [Schema.org](https://schema.org/Drug).
+This extension is intended to be used in the medicines-related items in the tender, award, or contract stages, to add more specific details that a medicine item may have. To use it, set the properties that are known, including the active ingredients, dosage form, the medicine container, and the administration route.
 
-This extension is intended to be used in the tender, award, or contract items that represent a medicine, to add more specific details that a medicine item may have. To use it, add the medicine attributes at the item level and set the properties that are known:
-
-* active ingredient: chemical compounds and/or biological substances
-* dosage form: dosage form in which this medicine is available
-* container: container or presentation form of the medicine
-* administration route: route by which this medicine can be given
-
-For the active ingredient dosage and the container capacity, it’s recommended to use the [ATC](https://www.whocc.no/atc_ddd_index/) scheme in `capacity.unit` and `dosage.unit`.
+For the active ingredient dosage and the container capacity, it’s recommended to use the [ATC](https://www.whocc.no/atc_ddd_index/) scheme in `capacity.unit.scheme` and `dosage.unit.scheme`.
 
 If a contracting process is in the award or contract stage, it’s possible to know more information about the medicine, such as the brand, the manufacturer, the country of origin, the expiration date, if they must maintain a cold chain and all the other commercial, financial and logistical conditions. Use the [generic item attributes](https://gitlab.com/dncp-opendata/ocds_item_attributes_extension) extension for all the cases where the medicine item has other attributes not included in this extension.
 
-If a medicine item has more than one active ingredient, add each one in the `activeIngredients` array.
+If a medicine item has more than one active ingredient, add each one to the `activeIngredients` array.
 
 If a medicine item is packaged in a multi-drug container, use `items.quantity` for the quantity in the container and `items.unit` for the unit.
 
 ## Codelists
 
-The administrationRoute.csv codelist is based on the [ATC list](https://www.whocc.no/atc_ddd_index/) (see route of administration).
+The ‘administrationRoute’ codelist is based on the [ATC list](https://www.whocc.no/atc_ddd_index/) (see `item.administrationRoute`).
 
-The dosageForm.csv codelist is based on the values in the list beginning on [Page 27 of the MSH International Medical Products Price Guide](https://www.msh.org/resources/international-medical-products-price-guide).
+The ‘dosageForm’ codelist is based on the list on [page 27 of the Management Sciences of Health (MSH) International Medical Products Price Guide](https://www.msh.org/resources/international-medical-products-price-guide).
 
-The container.csv codelist is based on the list on
+The ‘container’ codelist is based on the values in the list beginning on [page 133 of the MSH International Medical Products Price Guide](https://www.msh.org/resources/international-medical-products-price-guide).
 
 ## Examples
 
 ### One Active Ingredient
 
-This is an [example](https://api.mercadopublico.cl/APISOCDS/ocds/tender/734-82-LP14) of an item of a drug procurement process in Chile, and its representation in the extension. 
+This is an [example](https://api.mercadopublico.cl/APISOCDS/ocds/tender/734-82-LP14) of an item of a drug procurement process in Chile, and its modeling in the extension.
 
 | Description            | Minimum dispensing unit |
 | -----------            |------------------------- |
@@ -79,7 +78,7 @@ This is an [example](https://api.mercadopublico.cl/APISOCDS/ocds/tender/734-82-L
   }
 }
 ```
-This is an example of an item in the [UNOPS](https://datastudio.google.com/u/0/reporting/1lI9FpXAor0QmSmbZehZWmbrX4F-X1CLw/page/5UYMB?s=swplgxj_6no) system and how it would be represent with the extension.
+This is an example of an item in the [UNOPS](https://datastudio.google.com/u/0/reporting/1lI9FpXAor0QmSmbZehZWmbrX4F-X1CLw/page/5UYMB?s=swplgxj_6no) system and how it would be represented with the extension.
 
 | Description            | Minimum dispensing unit |
 | -----------            |------------------------- |
@@ -122,7 +121,7 @@ This is an example of an item in the [UNOPS](https://datastudio.google.com/u/0/r
 ```
 ### More than one Active Ingredient
 
-This is an [example](https://www.contrataciones.gov.py/licitaciones/convocatoria/391507-adquisicion-medicamentos-hospital-clinicas-1.html#pliego) of an item of a drug procurement processes in Paraguay and how it would be represent with the extension.
+This is an [example](https://www.contrataciones.gov.py/licitaciones/convocatoria/391507-adquisicion-medicamentos-hospital-clinicas-1.html#pliego) of an item of a drug procurement process in Paraguay and how it would be represented with the extension.
 
 | Description            | Technical specifications | Unit of measurement       |  Presentation         |  Delivery presentation |
 | -----------            |------------------------- | -----------               |  -----------          | ----------------       |
@@ -180,7 +179,7 @@ This is an [example](https://www.contrataciones.gov.py/licitaciones/convocatoria
 
 ## Related Standards
 
-The fields, definitions and codelists used in this extension are based on the following standards that are commonly used in the data on public medicine purchases. Each standard is used for the classification, designation or listing of drugs in different countries.
+The fields, definitions and codelists used in this extension are based on the following standards that are commonly used in the data on public medicine purchases. Each standard is used for the classification, designation, or listing of drugs in different countries.
 
 | Standard        | Maintains       |  Purpose                        |
 | -----------     | -----------    |  -----------                      |
