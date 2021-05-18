@@ -3,7 +3,7 @@
     "en": "Medicine"
   },
   "description": {
-    "en": "Extension of the OCDS standard for public medicine procurement processes"
+    "en": "Adds fields to the item object relevant to the procurement of medicines."
   },
   "documentationUrl": {
     "en": "https://www.example.com/"
