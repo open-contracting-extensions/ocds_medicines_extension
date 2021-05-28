@@ -1,5 +1,47 @@
 {
   "definitions": {
+    "Item": {
+      "properties": {
+        "activeIngredients": {
+          "title": "Active Ingredients",
+          "description": "An array of active ingredients, typically chemical compounds or biologic substances.",
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "wholeListMerge": true,
+          "items": {
+            "$ref": "#/definitions/ActiveIngredient"
+          }
+        },
+        "dosageForm": {
+          "title": "Dosage Form",
+          "description": "A dosage form in which this medicine is available, from the dosageForm codelist.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "codelist": "dosageForm.csv",
+          "openCodelist": true,
+          "minLength": 1
+        },
+        "administrationRoute": {
+          "title": "Administration Route",
+          "description": "A route by which this medicine can be given, from the administrationRoute codelist.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "codelist": "administrationRoute.csv",
+          "openCodelist": true,
+          "minLength": 1
+        },
+        "container": {
+          "title": "Container",
+          "description": "Describe the container in which the medicine is contained and its storage capacity. Also known as: presentation, presentation form, package.",
+          "$ref": "#/definitions/Container"
+        }
+      }
+    },
     "Weight": {
       "title": "Weight",
       "description": "The weight of one unit.",
@@ -97,48 +139,6 @@
         }
       },
       "minProperties": 1
-    },
-    "Item": {
-      "properties": {
-        "activeIngredients": {
-          "title": "Active Ingredients",
-          "description": "An array of active ingredients, typically chemical compounds or biologic substances.",
-          "type": "array",
-          "minItems": 1,
-          "uniqueItems": true,
-          "wholeListMerge": true,
-          "items": {
-            "$ref": "#/definitions/ActiveIngredient"
-          }
-        },
-        "dosageForm": {
-          "title": "Dosage Form",
-          "description": "A dosage form in which this medicine is available, from the dosageForm codelist.",
-          "type": [
-            "string",
-            "null"
-          ],
-          "codelist": "dosageForm.csv",
-          "openCodelist": true,
-          "minLength": 1
-        },
-        "administrationRoute": {
-          "title": "Administration Route",
-          "description": "A route by which this medicine can be given, from the administrationRoute codelist.",
-          "type": [
-            "string",
-            "null"
-          ],
-          "codelist": "administrationRoute.csv",
-          "openCodelist": true,
-          "minLength": 1
-        },
-        "container": {
-          "title": "Container",
-          "description": "Describe the container in which the medicine is contained and its storage capacity. Also known as: presentation, presentation form, package.",
-          "$ref": "#/definitions/Container"
-        }
-      }
     }
   }
 }
