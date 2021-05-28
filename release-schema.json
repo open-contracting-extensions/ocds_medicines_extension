@@ -4,7 +4,7 @@
       "properties": {
         "activeIngredients": {
           "title": "Active Ingredients",
-          "description": "An array of active ingredients, typically chemical compounds or biologic substances.",
+          "description": "An array of active ingredients, typically chemical compounds or biological substances.",
           "type": "array",
           "minItems": 1,
           "uniqueItems": true,
@@ -15,7 +15,7 @@
         },
         "dosageForm": {
           "title": "Dosage Form",
-          "description": "A dosage form in which this medicine is available, from the dosageForm codelist.",
+          "description": "The dosage form in which the medicine is available, from the dosageForm codelist.",
           "type": [
             "string",
             "null"
@@ -26,7 +26,7 @@
         },
         "administrationRoute": {
           "title": "Administration Route",
-          "description": "A route by which this medicine can be given, from the administrationRoute codelist.",
+          "description": "The route by which the medicine can be administered, from the administrationRoute codelist.",
           "type": [
             "string",
             "null"
@@ -37,10 +37,56 @@
         },
         "container": {
           "title": "Container",
-          "description": "Describe the container in which the medicine is contained and its storage capacity. Also known as: presentation, presentation form, package.",
+          "description": "The container for the medicine. Also known as: presentation, presentation form, package.",
           "$ref": "#/definitions/Container"
         }
       }
+    },
+    "ActiveIngredient": {
+      "title": "Active Ingredient",
+      "description": "Describe an active ingredient, typically chemical compounds or biologic substances.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Active Ingredient Name",
+          "description": "The name of the active ingredient. It refers to the generic name as in the International Common Denomination (INN). This field is the same as the 'name' attribute in the ATC standard. Also known as: generic name, drug, substance name, active substance.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "dosage": {
+          "title": "Active Ingredient Dosage",
+          "description": "Describe the dosage of the active ingredient for the drug, in number of units and their unit code. Also known as: concentration, potency.",
+          "$ref": "#/definitions/Weight"
+        }
+      },
+      "minProperties": 1
+    },
+    "Container": {
+      "title": "Container",
+      "description": "Describe the container in which the medicine is contained and its storage capacity. Also known as: presentation, presentation form, package.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Container Name",
+          "description": "The name of the container, from the container codelist.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "codelist": "container.csv",
+          "openCodelist": true,
+          "minLength": 1
+        },
+        "capacity": {
+          "title": "Container Capacity",
+          "description": "The storage capacity of the container, in number of units and their unit code.",
+          "$ref": "#/definitions/Weight"
+        }
+      },
+      "minProperties": 1
     },
     "Weight": {
       "title": "Weight",
@@ -90,52 +136,6 @@
           ],
           "versionId": true,
           "minLength": 1
-        }
-      },
-      "minProperties": 1
-    },
-    "Container": {
-      "title": "Container",
-      "description": "Describe the container in which the medicine is contained and its storage capacity. Also known as: presentation, presentation form, package.",
-      "type": "object",
-      "properties": {
-        "name": {
-          "title": "Container Name",
-          "description": "The name of the container, from the container codelist.",
-          "type": [
-            "string",
-            "null"
-          ],
-          "codelist": "container.csv",
-          "openCodelist": true,
-          "minLength": 1
-        },
-        "capacity": {
-          "title": "Container Capacity",
-          "description": "The storage capacity of the container, in number of units and their unit code.",
-          "$ref": "#/definitions/Weight"
-        }
-      },
-      "minProperties": 1
-    },
-    "ActiveIngredient": {
-      "title": "Active Ingredient",
-      "description": "Describe an active ingredient, typically chemical compounds or biologic substances.",
-      "type": "object",
-      "properties": {
-        "name": {
-          "title": "Active Ingredient Name",
-          "description": "The name of the active ingredient. It refers to the generic name as in the International Common Denomination (INN). This field is the same as the 'name' attribute in the ATC standard. Also known as: generic name, drug, substance name, active substance.",
-          "type": [
-            "string",
-            "null"
-          ],
-          "minLength": 1
-        },
-        "dosage": {
-          "title": "Active Ingredient Dosage",
-          "description": "Describe the dosage of the active ingredient for the drug, in number of units and their unit code. Also known as: concentration, potency.",
-          "$ref": "#/definitions/Weight"
         }
       },
       "minProperties": 1
