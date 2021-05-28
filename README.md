@@ -22,7 +22,7 @@ If a medicine item is packaged in a multi-drug container, use `items.quantity` f
 
 ## Codelists
 
-The ‘administrationRoute’ codelist is based on the [ATC list](https://www.whocc.no/atc_ddd_index/) (see `item.administrationRoute`).
+The ‘administrationRoute’ codelist is based on the [ATC list](https://www.whocc.no/atc_ddd_index/) (see `items.administrationRoute`).
 
 The ‘dosageForm’ codelist is based on the list on [page 27 of the Management Sciences of Health (MSH) International Medical Products Price Guide](https://www.msh.org/resources/international-medical-products-price-guide).
 
