@@ -1,12 +1,6 @@
 # Medicine extension
 
-Add attributes to the `Item` object to describe specific details about a medicine item.
-
-## Background
-
-This extension is based on research with 4 data users and 6 data publishers including public entities, journalists, medicine price analysts, and software developers for medicine purchase systems from 9 countries from Latin America, Europe, and Africa. 
-
-The extension includes the most used fields in different countries. The field names are standardized according to the [Anatomical, Therapeutic, Chemical classification system (ATC)](https://www.whocc.no/atc_ddd_index/), developed by the World Health Organization, and the Drug definition by [Schema.org](https://schema.org/Drug).
+Adds fields to the item object relevant to the procurement of medicines.
 
 ## Guidance
 
@@ -180,8 +174,10 @@ This is an [example](https://www.contrataciones.gov.py/licitaciones/convocatoria
 ## Related Standards
 
 The fields, definitions and codelists used in this extension are based on the following standards that are commonly used in the data on public medicine purchases. Each standard is used for the classification, designation, or listing of drugs in different countries.
+The `administrationRoute` codelist is based on the [ATC list](https://www.whocc.no/atc_ddd_index/) (see `items.administrationRoute`).
+The `dosageForm` codelist is based on the list on [page 27 of the Management Sciences of Health (MSH) International Medical Products Price Guide](https://www.msh.org/resources/international-medical-products-price-guide).
 
-| Standard        | Maintains       |  Purpose                        |
+| Standard        | Maintainer       |  Purpose                        |
 | -----------     | -----------    |  -----------                      |
 | [ATC](https://www.whocc.no/atc_ddd_index/)   | [WHO](https://www.who.int/home)         | medicine classification|
 | [Schema.org](https://schema.org/Drug)        | [SCHEMA.ORG COMMUNITY GROUP](https://www.w3.org/community/schemaorg/)         | medicine classification|
@@ -190,8 +186,14 @@ The fields, definitions and codelists used in this extension are based on the fo
 | [SNOMED-CT](https://bioportal.bioontology.org/ontologies/SNOMEDCT?p=classes&conceptid=410942007) | [National Center for Biomedical Ontology](https://ncbo.bioontology.org/about-ncbo) | medicine classification|
 | [LME MSPY](https://www.mspbs.gov.py/dependencias/dggies/adjunto/db7bee-ListadodeMedicamentosEsenciales.pdf) | [Ministerio de Salud del Paraguay](https://www.mspbs.gov.py/index.php) | medicine list|
 | [Catálogo CBM](http://www.csg.gob.mx/contenidos/priorizacion/cuadro-basico/med/catalogos.html)| [Consejo de Salubridad General de México](http://www.csg.gob.mx/index.html) | medicine list|
-| [UNSPSC](https://ncbo.bioontology.org/about-ncbo) | [United Nations](https://www.un.org/en/) |classification of products and services|
+| [United Nations Standard Products and Services Code (UNSPSC)](https://www.unspsc.org/) | [United Nations](https://www.un.org/en/) |classification of products and services|
 | [Catálogo de Productos Farmacéuticos](http://observatorio.digemid.minsa.gob.pe/Precios/ProcesoL/Catalogo/CatalogoProductos.aspx)|[Ministerio de Salud de Perú](https://www.gob.pe/minsa/)| classification of products and services|
+
+## Background
+
+This extension is based on research with 4 data users and 6 data publishers including public entities, journalists, medicine price analysts, and software developers for medicine purchase systems from 9 countries from Latin America, Europe, and Africa. 
+
+The extension includes the most used fields in different countries. The field names are standardized according to the [Anatomical, Therapeutic, Chemical classification system (ATC)](https://www.whocc.no/atc_ddd_index/), developed by the World Health Organization, and the Drug definition by [Schema.org](https://schema.org/Drug).
 
 ## Issues
 
