@@ -28,9 +28,10 @@ The ‘container’ codelist is based on the values in the list beginning on [pa
 
 This is an [example](https://api.mercadopublico.cl/APISOCDS/ocds/tender/734-82-LP14) of an item of a drug procurement process in Chile, and its modeling in the extension.
 
-| Description            | Minimum dispensing unit |
-| -----------            |------------------------- |
-| Acetilcisteina | ACETILCISTEINA-N 100 MG/ML SOLUCION PARA NEBULIZAR FRASCO 15-30 ML ENVASE INDIVIDUAL RESISTENTE CON SELLO QUE ASEGURE INVIOLABILIDAD DEL CONTENIDO |
+**Description** | **Minimum dispensing unit**
+--|--
+Acetilcisteina | ACETILCISTEINA-N 100 MG/ML SOLUCION PARA NEBULIZAR FRASCO 15-30 ML ENVASE INDIVIDUAL RESISTENTE CON SELLO QUE ASEGURE INVIOLABILIDAD DEL CONTENIDO
+
 ```json
 {
   "tender": {
@@ -74,9 +75,10 @@ This is an [example](https://api.mercadopublico.cl/APISOCDS/ocds/tender/734-82-L
 ```
 This is an example of an item in the [UNOPS](https://datastudio.google.com/u/0/reporting/1lI9FpXAor0QmSmbZehZWmbrX4F-X1CLw/page/5UYMB?s=swplgxj_6no) system and how it would be represented with the extension.
 
-| Description            | Minimum dispensing unit |
-| -----------            |------------------------- |
-| Midazolam 5mg / solucion Parenteral | Envase por un 1 ml |
+**Description** | **Minimum dispensing unit**
+--|--
+Midazolam 5mg / solucion Parenteral | Envase por un 1 ml
+
 ```json
 {
   "tender": {
@@ -117,9 +119,10 @@ This is an example of an item in the [UNOPS](https://datastudio.google.com/u/0/r
 
 This is an [example](https://www.contrataciones.gov.py/licitaciones/convocatoria/391507-adquisicion-medicamentos-hospital-clinicas-1.html#pliego) of an item of a drug procurement process in Paraguay and how it would be represented with the extension.
 
-| Description            | Technical specifications | Unit of measurement       |  Presentation         |  Delivery presentation |
-| -----------            |------------------------- | -----------               |  -----------          | ----------------       |
-| Clorhidrato de Bupivacaina Hiperbarica Inyectable     | clorhidrato de bupivacaina 25 mg. + dextrosa 82,5 mg. - solución inyectable | UNIDAD | VIAL | caja conteniendo 25 ampollas como minimo de ml. |
+Description | Technical specifications | Unit of measurement | Presentation |  Delivery presentation
+--|--|--|--|--
+Clorhidrato de Bupivacaina Hiperbarica Inyectable     | clorhidrato de bupivacaina 25 mg. + dextrosa 82,5 mg. - solución inyectable | UNIDAD | VIAL | caja conteniendo 25 ampollas como minimo de ml.
+
 ```json
 {
   "tender": {
@@ -177,16 +180,16 @@ The fields, definitions and codelists used in this extension are based on the fo
 The `administrationRoute` codelist is based on the [ATC list](https://www.whocc.no/atc_ddd_index/) (see `items.administrationRoute`).
 The `dosageForm` codelist is based on the list on [page 27 of the Management Sciences of Health (MSH) International Medical Products Price Guide](https://www.msh.org/resources/international-medical-products-price-guide).
 
-| Standard        | Maintainer       |  Purpose                        |
-| -----------     | -----------    |  -----------                      |
-| [Anatomical, Therapeutic, Chemical classification system (ATC)](https://www.whocc.no/atc_ddd_index/)   | [World Health Organization](https://www.who.int/home)         | medicine classification|
+Standard        | Maintainer       |  Purpose
+---|---|---
+[Anatomical, Therapeutic, Chemical classification system (ATC)](https://www.whocc.no/atc_ddd_index/)   | [World Health Organization](https://www.who.int/home)         | medicine classification|
 | [Drug](https://schema.org/Drug) (Schema.org type)        | [Schema.org Community Group](https://www.w3.org/community/schemaorg/)         | medicine classification|
 | [International nonproprietary names (INN)](https://www.who.int/teams/health-product-and-policy-standards/inn/)        | [World Health Organization](https://www.who.int/home)         | medicine names|
 | [MSH Products Price Guide](https://www.msh.org/resources/international-medical-products-price-guide)        | [Management Sciences for Health](https://www.msh.org/about-us)         | medicine list|
 | [Listado de Medicamentos Esenciales](https://www.mspbs.gov.py/dependencias/dggies/adjunto/db7bee-ListadodeMedicamentosEsenciales.pdf) | [Ministerio de Salud del Paraguay](https://www.mspbs.gov.py/index.php) | medicine list|
 | [Cuadro Básico y Catálogo de Medicamentos (CBM)](http://www.csg.gob.mx/contenidos/priorizacion/cuadro-basico/med/catalogos.html)| [Consejo de Salubridad General de México](http://www.csg.gob.mx/index.html) | medicine catalogue|
 | [United Nations Standard Products and Services Code (UNSPSC)](https://www.unspsc.org/) | [United Nations](https://www.un.org/en/) |classification of products and services, including medicines|
-| [Catálogo de Productos Farmacéuticos](http://observatorio.digemid.minsa.gob.pe/Precios/ProcesoL/Catalogo/CatalogoProductos.aspx)|[Ministerio de Salud de Perú](https://www.gob.pe/minsa/)| medicine catalogue|
+| [Catálogo de Productos Farmacéuticos](http://observatorio.digemid.minsa.gob.pe/Precios/ProcesoL/Catalogo/CatalogoProductos.aspx)|[Ministerio de Salud de Perú](https://www.gob.pe/minsa/)| medicine catalogue
 
 ## Background
 
