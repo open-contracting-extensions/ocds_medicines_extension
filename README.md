@@ -58,7 +58,7 @@ This is an [example](https://api.mercadopublico.cl/APISOCDS/ocds/tender/734-82-L
               "scheme": "ATC",
               "id": "ml"
             },
-            "quantity": "[15,30]"
+            "value": "[15,30]"
           }
         },
         "activeIngredients": [
@@ -69,7 +69,7 @@ This is an [example](https://api.mercadopublico.cl/APISOCDS/ocds/tender/734-82-L
                 "scheme": "ATC",
                 "id": "ml"
               },
-              "quantity": 100
+              "value": 100
             }
           }
         ]
@@ -99,7 +99,7 @@ This is an example of an item in the [UNOPS](https://datastudio.google.com/u/0/r
               "scheme": "ATC",
               "id": "ml"
             },
-            "quantity": 1
+            "value": 1
           }
         },
         "activeIngredients": [
@@ -110,7 +110,7 @@ This is an example of an item in the [UNOPS](https://datastudio.google.com/u/0/r
                 "scheme": "ATC",
                 "id": "mg"
               },
-              "quantity": 5
+              "value": 5
             }
           }
         ]
@@ -141,7 +141,7 @@ This is an [example](https://www.contrataciones.gov.py/licitaciones/convocatoria
               "scheme": "ATC",
               "id": "ml"
             },
-            "quantity": 4
+            "value": 4
           }
         },
         "activeIngredients": [
@@ -152,7 +152,7 @@ This is an [example](https://www.contrataciones.gov.py/licitaciones/convocatoria
                 "scheme": "ATC",
                 "id": "mg"
               },
-              "quantity": 250
+              "value": 250
             }
           },
           {
@@ -162,7 +162,7 @@ This is an [example](https://www.contrataciones.gov.py/licitaciones/convocatoria
                 "scheme": "ATC",
                 "id": "mg"
               },
-              "quantity": 82.5
+              "value": 82.5
             }
           }
         ],

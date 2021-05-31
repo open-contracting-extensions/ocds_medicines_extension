@@ -1,17 +1,17 @@
 {
   "definitions": {
-    "Weight": {
-      "title": "Weight",
-      "description": "The weight of one unit.",
+    "Quantity": {
+      "title": "Quantity",
+      "description": "The quantity of one unit.",
       "type": "object",
       "properties": {
         "unit": {
           "title": "Unit",
-          "description": "The code and scheme for the unit in which the weight is specified.",
+          "description": "The code and scheme for the unit in which the quantity is specified.",
           "$ref": "#/definitions/SimpleUnit"
         },
-        "quantity": {
-          "title": "Quantity",
+        "value": {
+          "title": "Value",
           "description": "The number of units.",
           "type": [
             "string",
@@ -71,7 +71,7 @@
         "capacity": {
           "title": "Container Capacity",
           "description": "The storage capacity of the container, in number of units and their unit code.",
-          "$ref": "#/definitions/Weight"
+          "$ref": "#/definitions/Quantity"
         }
       },
       "minProperties": 1
@@ -93,7 +93,7 @@
         "dosage": {
           "title": "Active Ingredient Dosage",
           "description": "Describe the dosage of the active ingredient for the drug, in number of units and their unit code. Also known as: concentration, potency.",
-          "$ref": "#/definitions/Weight"
+          "$ref": "#/definitions/Quantity"
         }
       },
       "minProperties": 1
