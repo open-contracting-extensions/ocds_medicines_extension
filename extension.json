@@ -6,7 +6,7 @@
     "en": "Adds fields to the item object relevant to the procurement of medicines."
   },
   "documentationUrl": {
-    "en": "https://www.example.com/"
+    "en": "https://extensions.open-contracting.org/en/extensions/medicine/master/"
   },
   "schemas": [
     "release-schema.json"
