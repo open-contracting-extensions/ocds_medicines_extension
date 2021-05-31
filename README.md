@@ -180,16 +180,16 @@ The fields, definitions and codelists used in this extension are based on the fo
 The `administrationRoute` codelist is based on the [ATC list](https://www.whocc.no/atc_ddd_index/) (see `items.administrationRoute`).
 The `dosageForm` codelist is based on the list on [page 27 of the Management Sciences of Health (MSH) International Medical Products Price Guide](https://www.msh.org/resources/international-medical-products-price-guide).
 
-Standard        | Maintainer       |  Purpose
----|---|---
-[Anatomical, Therapeutic, Chemical classification system (ATC)](https://www.whocc.no/atc_ddd_index/)   | [World Health Organization](https://www.who.int/home)         | medicine classification|
-| [Drug](https://schema.org/Drug) (Schema.org type)        | [Schema.org Community Group](https://www.w3.org/community/schemaorg/)         | medicine classification|
-| [International nonproprietary names (INN)](https://www.who.int/teams/health-product-and-policy-standards/inn/)        | [World Health Organization](https://www.who.int/home)         | medicine names|
-| [MSH Products Price Guide](https://www.msh.org/resources/international-medical-products-price-guide)        | [Management Sciences for Health](https://www.msh.org/about-us)         | medicine list|
-| [Listado de Medicamentos Esenciales](https://www.mspbs.gov.py/dependencias/dggies/adjunto/db7bee-ListadodeMedicamentosEsenciales.pdf) | [Ministerio de Salud del Paraguay](https://www.mspbs.gov.py/index.php) | medicine list|
-| [Cuadro Básico y Catálogo de Medicamentos (CBM)](http://www.csg.gob.mx/contenidos/priorizacion/cuadro-basico/med/catalogos.html)| [Consejo de Salubridad General de México](http://www.csg.gob.mx/index.html) | medicine catalogue|
-| [United Nations Standard Products and Services Code (UNSPSC)](https://www.unspsc.org/) | [United Nations](https://www.un.org/en/) |classification of products and services, including medicines|
-| [Catálogo de Productos Farmacéuticos](http://observatorio.digemid.minsa.gob.pe/Precios/ProcesoL/Catalogo/CatalogoProductos.aspx)|[Ministerio de Salud de Perú](https://www.gob.pe/minsa/)| medicine catalogue
+Standard | Maintainer |  Purpose
+--|--|--
+[Anatomical, Therapeutic, Chemical classification system (ATC)](https://www.whocc.no/atc_ddd_index/)   | [World Health Organization](https://www.who.int/home)         | medicine classification
+[Drug](https://schema.org/Drug) (Schema.org type)        | [Schema.org Community Group](https://www.w3.org/community/schemaorg/)         | medicine classification
+[International nonproprietary names (INN)](https://www.who.int/teams/health-product-and-policy-standards/inn/)        | [World Health Organization](https://www.who.int/home)         | medicine names
+[MSH Products Price Guide](https://www.msh.org/resources/international-medical-products-price-guide)        | [Management Sciences for Health](https://www.msh.org/about-us)         | medicine list
+[Listado de Medicamentos Esenciales](https://www.mspbs.gov.py/dependencias/dggies/adjunto/db7bee-ListadodeMedicamentosEsenciales.pdf) | [Ministerio de Salud del Paraguay](https://www.mspbs.gov.py/index.php) | medicine list
+[Cuadro Básico y Catálogo de Medicamentos (CBM)](http://www.csg.gob.mx/contenidos/priorizacion/cuadro-basico/med/catalogos.html)| [Consejo de Salubridad General de México](http://www.csg.gob.mx/index.html) | medicine catalogue
+[United Nations Standard Products and Services Code (UNSPSC)](https://www.unspsc.org/) | [United Nations](https://www.un.org/en/) |classification of products and services, including medicines
+[Catálogo de Productos Farmacéuticos](http://observatorio.digemid.minsa.gob.pe/Precios/ProcesoL/Catalogo/CatalogoProductos.aspx)|[Ministerio de Salud de Perú](https://www.gob.pe/minsa/)| medicine catalogue
 
 ## Background
 
