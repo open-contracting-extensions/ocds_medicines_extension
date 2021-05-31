@@ -14,21 +14,13 @@ If a medicine item has more than one active ingredient, add each one to the `act
 
 If a medicine item is packaged in a multi-drug container, use `items.quantity` for the quantity in the container and `items.unit` for the unit.
 
-## Codelists
-
-The ‘administrationRoute’ codelist is based on the [ATC list](https://www.whocc.no/atc_ddd_index/) (see `items.administrationRoute`).
-
-The ‘dosageForm’ codelist is based on the list on [page 27 of the Management Sciences of Health (MSH) International Medical Products Price Guide](https://www.msh.org/resources/international-medical-products-price-guide).
-
-The ‘container’ codelist is based on the values in the list beginning on [page 133 of the MSH International Medical Products Price Guide](https://www.msh.org/resources/international-medical-products-price-guide).
-
 ## Examples
 
 ### One Active Ingredient
 
 This is an [example](https://api.mercadopublico.cl/APISOCDS/ocds/tender/734-82-LP14) of an item of a drug procurement process in Chile, and its modeling in the extension.
 
-**Description** | **Minimum dispensing unit**
+Description | Minimum dispensing unit
 --|--
 Acetilcisteina | ACETILCISTEINA-N 100 MG/ML SOLUCION PARA NEBULIZAR FRASCO 15-30 ML ENVASE INDIVIDUAL RESISTENTE CON SELLO QUE ASEGURE INVIOLABILIDAD DEL CONTENIDO
 
@@ -75,7 +67,7 @@ Acetilcisteina | ACETILCISTEINA-N 100 MG/ML SOLUCION PARA NEBULIZAR FRASCO 15-30
 ```
 This is an example of an item in the [UNOPS](https://datastudio.google.com/u/0/reporting/1lI9FpXAor0QmSmbZehZWmbrX4F-X1CLw/page/5UYMB?s=swplgxj_6no) system and how it would be represented with the extension.
 
-**Description** | **Minimum dispensing unit**
+Description | Minimum dispensing unit
 --|--
 Midazolam 5mg / solucion Parenteral | Envase por un 1 ml
 
