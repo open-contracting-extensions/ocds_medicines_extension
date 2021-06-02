@@ -8,7 +8,7 @@ This extension is intended to be used in the medicines-related items in the tend
 
 For the active ingredient dosage and the container capacity, it’s recommended to use the [ATC](https://www.whocc.no/atc_ddd_index/) scheme in `capacity.unit.scheme` and `dosage.unit.scheme`.
 
-If a contracting process is in the award or contract stage, it’s possible to know more information about the medicine, such as the brand, the manufacturer, the country of origin, the expiration date, if they must maintain a cold chain and all the other commercial, financial and logistical conditions. Use the [generic item attributes](https://gitlab.com/dncp-opendata/ocds_item_attributes_extension) extension for all the cases where the medicine item has other attributes not included in this extension.
+If a contracting process is in the award or contract stage, it’s possible to know more information about the medicine, such as the brand, the manufacturer, the country of origin, the expiration date, if they must maintain a cold chain and all the other commercial, financial and logistical conditions. Use the [generic item attributes](https://extensions.open-contracting.org/en/extensions/itemAttributes/master/) extension for all the cases where the medicine item has other attributes not included in this extension.
 
 If a medicine item has more than one active ingredient, add each one to the `activeIngredients` array.
 
