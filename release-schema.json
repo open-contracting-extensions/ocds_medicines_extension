@@ -1,18 +1,106 @@
 {
   "definitions": {
+    "Item": {
+      "properties": {
+        "activeIngredients": {
+          "title": "Active ingredients",
+          "description": "An array of active ingredients, typically chemical compounds or biological substances.",
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "wholeListMerge": true,
+          "items": {
+            "$ref": "#/definitions/ActiveIngredient"
+          }
+        },
+        "dosageForm": {
+          "title": "Dosage form",
+          "description": "The dosage form in which the medicine is available, from the dosageForm codelist.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "codelist": "dosageForm.csv",
+          "openCodelist": true,
+          "minLength": 1
+        },
+        "administrationRoute": {
+          "title": "Administration route",
+          "description": "The route by which the medicine can be administered, from the administrationRoute codelist.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "codelist": "administrationRoute.csv",
+          "openCodelist": true,
+          "minLength": 1
+        },
+        "container": {
+          "title": "Container",
+          "description": "The container for the medicine. Also known as: presentation, presentation form, package.",
+          "$ref": "#/definitions/Container"
+        }
+      }
+    },
+    "ActiveIngredient": {
+      "title": "Active ingredient",
+      "description": "An active ingredient, typically a chemical compound or biological substance.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "description": "The name of the active ingredient. It is recommended to use a generic name from the International Nonproprietary Names (INN). Also known as: generic name, drug, substance name, active substance.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "minLength": 1
+        },
+        "dosage": {
+          "title": "Dosage",
+          "description": "The dosage of the active ingredient. Also known as: concentration, potency.",
+          "$ref": "#/definitions/Quantity"
+        }
+      },
+      "minProperties": 1
+    },
+    "Container": {
+      "title": "Container",
+      "description": "The container for the medicine. Also known as: presentation, presentation form, package.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "description": "The common name of the container, from the container codelist.",
+          "type": [
+            "string",
+            "null"
+          ],
+          "codelist": "container.csv",
+          "openCodelist": true,
+          "minLength": 1
+        },
+        "capacity": {
+          "title": "Capacity",
+          "description": "The storage capacity of the container.",
+          "$ref": "#/definitions/Quantity"
+        }
+      },
+      "minProperties": 1
+    },
     "Quantity": {
       "title": "Quantity",
-      "description": "The quantity of one unit.",
+      "description": "The quantity of a thing.",
       "type": "object",
       "properties": {
         "unit": {
           "title": "Unit",
-          "description": "The code and scheme for the unit in which the quantity is specified.",
+          "description": "The unit of measurement for the quantity.",
           "$ref": "#/definitions/SimpleUnit"
         },
         "value": {
           "title": "Value",
-          "description": "The number of units.",
+          "description": "The quantity, as a multiple of the unit of measurement. The quantity is expressed in interval notation, for example: \"[10,10]\" for 10 units, \"[1,10]\" for 1 to 10 units, or \"[10,INF[\" for 10 or more units.",
           "type": [
             "string",
             "number",
@@ -24,13 +112,13 @@
       "minProperties": 1
     },
     "SimpleUnit": {
-      "title": "Simple Unit",
-      "description": "A simple unit of measure, consisting of: an identifier for the list (scheme) from which the unit is taken, and an identifier for the unit from that list.",
+      "title": "Simple unit",
+      "description": "A unit of measurement.",
       "type": "object",
       "properties": {
         "scheme": {
           "title": "Scheme",
-          "description": "The list from which identifiers for units of measure are taken, using the open [unitClassificationScheme](https://standard.open-contracting.org/{{version}}/{{lang}}/schema/codelists/#unit-classification-scheme) codelist. 'UNCEFACT' is recommended.",
+          "description": "The codelist from which the identifier for the unit of measurement is taken, using the open [unitClassificationScheme](https://standard.open-contracting.org/{{version}}/{{lang}}/schema/codelists/#unit-classification-scheme) codelist. 'UNCEFACT' is recommended.",
           "type": [
             "string",
             "null"
@@ -41,7 +129,7 @@
         },
         "id": {
           "title": "ID",
-          "description": "The identifier from the codelist referenced in the `scheme` field. Check the [unitClassificationScheme](https://standard.open-contracting.org/{{version}}/{{lang}}/schema/codelists/#unit-classification-scheme) codelist for details of how to find and use identifiers from the scheme in use.",
+          "description": "The identifier for the unit of measurement, taken from the codelist referenced by the `scheme` field. Refer to the [unitClassificationScheme](https://standard.open-contracting.org/{{version}}/{{lang}}/schema/codelists/#unit-classification-scheme) codelist for details of how to find identifiers within schemes.",
           "type": [
             "string",
             "null"
@@ -51,94 +139,6 @@
         }
       },
       "minProperties": 1
-    },
-    "Container": {
-      "title": "Container",
-      "description": "Describe the container in which the medicine is contained and its storage capacity. Also known as: presentation, presentation form, package.",
-      "type": "object",
-      "properties": {
-        "name": {
-          "title": "Container Name",
-          "description": "The name of the container, from the container codelist.",
-          "type": [
-            "string",
-            "null"
-          ],
-          "codelist": "container.csv",
-          "openCodelist": true,
-          "minLength": 1
-        },
-        "capacity": {
-          "title": "Container Capacity",
-          "description": "The storage capacity of the container, in number of units and their unit code.",
-          "$ref": "#/definitions/Quantity"
-        }
-      },
-      "minProperties": 1
-    },
-    "ActiveIngredient": {
-      "title": "Active Ingredient",
-      "description": "Describe an active ingredient, typically chemical compounds or biologic substances.",
-      "type": "object",
-      "properties": {
-        "name": {
-          "title": "Active Ingredient Name",
-          "description": "The name of the active ingredient. It refers to the generic name as in the International Common Denomination (INN). This field is the same as the 'name' attribute in the ATC standard. Also known as: generic name, drug, substance name, active substance.",
-          "type": [
-            "string",
-            "null"
-          ],
-          "minLength": 1
-        },
-        "dosage": {
-          "title": "Active Ingredient Dosage",
-          "description": "Describe the dosage of the active ingredient for the drug, in number of units and their unit code. Also known as: concentration, potency.",
-          "$ref": "#/definitions/Quantity"
-        }
-      },
-      "minProperties": 1
-    },
-    "Item": {
-      "properties": {
-        "activeIngredients": {
-          "title": "Active Ingredients",
-          "description": "An array of active ingredients, typically chemical compounds or biologic substances.",
-          "type": "array",
-          "minItems": 1,
-          "uniqueItems": true,
-          "wholeListMerge": true,
-          "items": {
-            "$ref": "#/definitions/ActiveIngredient"
-          }
-        },
-        "dosageForm": {
-          "title": "Dosage Form",
-          "description": "A dosage form in which this medicine is available, from the dosageForm codelist.",
-          "type": [
-            "string",
-            "null"
-          ],
-          "codelist": "dosageForm.csv",
-          "openCodelist": true,
-          "minLength": 1
-        },
-        "administrationRoute": {
-          "title": "Administration Route",
-          "description": "A route by which this medicine can be given, from the administrationRoute codelist.",
-          "type": [
-            "string",
-            "null"
-          ],
-          "codelist": "administrationRoute.csv",
-          "openCodelist": true,
-          "minLength": 1
-        },
-        "container": {
-          "title": "Container",
-          "description": "Describe the container in which the medicine is contained and its storage capacity. Also known as: presentation, presentation form, package.",
-          "$ref": "#/definitions/Container"
-        }
-      }
     }
   }
 }
