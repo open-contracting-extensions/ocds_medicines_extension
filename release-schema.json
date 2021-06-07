@@ -59,7 +59,7 @@
         "dosage": {
           "title": "Dosage",
           "description": "The dosage of the active ingredient. Also known as: concentration, potency.",
-          "$ref": "#/definitions/Weight"
+          "$ref": "#/definitions/Quantity"
         }
       },
       "minProperties": 1
@@ -83,24 +83,24 @@
         "capacity": {
           "title": "Capacity",
           "description": "The storage capacity of the container.",
-          "$ref": "#/definitions/Weight"
+          "$ref": "#/definitions/Quantity"
         }
       },
       "minProperties": 1
     },
-    "Weight": {
-      "title": "Weight",
-      "description": "The weight of a thing.",
+    "Quantity": {
+      "title": "Quantity",
+      "description": "The quantity of a thing.",
       "type": "object",
       "properties": {
         "unit": {
           "title": "Unit",
-          "description": "The unit of measurement for the weight.",
+          "description": "The unit of measurement for the quantity.",
           "$ref": "#/definitions/SimpleUnit"
         },
-        "quantity": {
-          "title": "Quantity",
-          "description": "The weight, as a multiple of the unit of measurement. The weight is expressed in interval notation, for example: \"[10,10]\" for 10 units, \"[1,10]\" for 1 to 10 units, or \"[10,INF[\" for 10 or more units.",
+        "value": {
+          "title": "Value",
+          "description": "The quantity, as a multiple of the unit of measurement. The quantity is expressed in interval notation, for example: \"[10,10]\" for 10 units, \"[1,10]\" for 1 to 10 units, or \"[10,INF[\" for 10 or more units.",
           "type": [
             "string",
             "number",
