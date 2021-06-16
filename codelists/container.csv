@@ -1,9 +1,13 @@
 Code,Title
-jar,Jar
+ampule,Ampule
+bag,Bag
 blister,Blister
-blisterVial,Blister Vial
-dropperBottle,Dropper Bottle
-preFilledSyringe,Pre-Filled Syringe
-tube,Tube
-compressed,Compressed
+bottle,Bottle
 cartridge,Cartridge
+jar,Jar
+preFilledSyringe,Pre-Filled Syringe
+sashet,Sashet
+strip,Strip
+tin,Tin
+tube,Tube
+vial,Vial
