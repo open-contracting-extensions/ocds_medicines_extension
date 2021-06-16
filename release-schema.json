@@ -37,7 +37,7 @@
         },
         "container": {
           "title": "Container",
-          "description": "The container for the medicine. Also known as: presentation, presentation form, package.",
+          "description": "The immediate container for the medicine. Also known as: presentation, presentation form, package.",
           "$ref": "#/definitions/Container"
         }
       }
