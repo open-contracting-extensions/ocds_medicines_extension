@@ -90,9 +90,9 @@
           ],
           "minLength": 1
         },
-        "dosage": {
-          "title": "Active Ingredient Dosage",
-          "description": "Describe the dosage of the active ingredient for the drug, in number of units and their unit code. Also known as: concentration, potency.",
+        "strength": {
+          "title": "Active Ingredient Strength",
+          "description": "Describe the strength of the active ingredient for the drug, in number of units and their unit code. Also known as: concentration, potency.",
           "$ref": "#/definitions/Quantity"
         }
       },

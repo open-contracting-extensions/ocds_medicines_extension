@@ -6,7 +6,7 @@ Adds fields to the item object relevant to the procurement of medicines.
 
 This extension is intended to be used in the medicines-related items in the tender, award, or contract stages, to add more specific details that a medicine item may have. To use it, set the properties that are known, including the active ingredients, dosage form, the medicine container, and the administration route.
 
-For the active ingredient dosage and the container capacity, it’s recommended to use the [ATC](https://www.whocc.no/atc_ddd_index/) scheme in `capacity.unit.scheme` and `dosage.unit.scheme`.
+For the active ingredient strength and the container capacity, it’s recommended to use the [ATC](https://www.whocc.no/atc_ddd_index/) scheme in `capacity.unit.scheme` and `strength.unit.scheme`.
 
 If a contracting process is in the award or contract stage, it’s possible to know more information about the medicine, such as the brand, the manufacturer, the country of origin, the expiration date, if they must maintain a cold chain and all the other commercial, financial and logistical conditions. Use the [generic item attributes](https://extensions.open-contracting.org/en/extensions/itemAttributes/master/) extension for all the cases where the medicine item has other attributes not included in this extension.
 
@@ -51,7 +51,7 @@ Acetilcisteina | ACETILCISTEINA-N 100 MG/ML SOLUCION PARA NEBULIZAR FRASCO 15-30
         "activeIngredients": [
           {
             "name": "acetilcisteina",
-            "dosage": {
+            "strength": {
               "unit": {
                 "scheme": "ATC",
                 "id": "ml"
@@ -93,7 +93,7 @@ Midazolam 5mg / solucion Parenteral | Envase por un 1 ml
         "activeIngredients": [
           {
             "name": "Midazolam",
-            "dosage": {
+            "strength": {
               "unit": {
                 "scheme": "ATC",
                 "id": "mg"
@@ -136,7 +136,7 @@ Clorhidrato de Bupivacaina Hiperbarica Inyectable     | clorhidrato de bupivacai
         "activeIngredients": [
           {
             "name": "clorhidrato de bupivacaina",
-            "dosage": {
+            "strength": {
               "unit": {
                 "scheme": "ATC",
                 "id": "mg"
@@ -146,7 +146,7 @@ Clorhidrato de Bupivacaina Hiperbarica Inyectable     | clorhidrato de bupivacai
           },
           {
             "name": "dextrosa",
-            "dosage": {
+            "strength": {
               "unit": {
                 "scheme": "ATC",
                 "id": "mg"
