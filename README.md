@@ -170,8 +170,8 @@ Clorhidrato de Bupivacaina Hiperbarica Inyectable     | clorhidrato de bupivacai
 
 The fields, definitions and codelists used in this extension are based on the following standards that are commonly used in the data on public medicine purchases. Each standard is used for the classification, designation, or listing of drugs in different countries.
 The `administrationRoute` codelist is based on the [FDA Route of Administration list](https://www.fda.gov/drugs/data-standards-manual-monographs/route-administration) (see `items.administrationRoute`).
-The `dosageForm` codelist is based on the list on [page 27 of the Management Sciences of Health (MSH) International Medical Products Price Guide](https://www.msh.org/resources/international-medical-products-price-guide).
-The `container` codelist is based on the Health Level Seven (HL7) Fast Healthcare Interoperability Resources (FHIR) [Medication knowledge package type codes](http://terminology.hl7.org/CodeSystem/medicationknowledge-package-type)
+The `dosageForm` codelist is based on the [European Medicines Agency (EMA) dosage form list](https://www.ema.europa.eu/documents/other/list-pharmaceutical-dosage-forms_en.xls).
+The `container` codelist is based on the Health Level Seven (HL7) Fast Healthcare Interoperability Resources (FHIR) [Medication knowledge package type codes](http://terminology.hl7.org/CodeSystem/medicationknowledge-package-type).
 
 Standard | Maintainer |  Purpose
 --|--|--
