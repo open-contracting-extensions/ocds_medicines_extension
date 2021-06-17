@@ -130,7 +130,7 @@ Clorhidrato de Bupivacaina Hiperbarica Inyectable     | clorhidrato de bupivacai
               "scheme": "UNCEFACT",
               "id": "ml"
             },
-            "value": "[5, INF]"
+            "value": "[5, INF["
           }
         },
         "activeIngredients": [
