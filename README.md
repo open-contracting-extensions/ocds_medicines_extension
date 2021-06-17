@@ -126,27 +126,22 @@ Clorhidrato de Bupivacaina Hiperbarica Inyectable     | clorhidrato de bupivacai
 
 ## Related Standards
 
-The fields, definitions and codelists used in this extension are based on the following standards that are commonly used in the data on public medicine purchases. Each standard is used for the classification, designation, or listing of drugs in different countries.
-The `administrationRoute` codelist is based on the [FDA Route of Administration list](https://www.fda.gov/drugs/data-standards-manual-monographs/route-administration) (see `items.administrationRoute`).
-The `dosageForm` codelist is based on the [European Medicines Agency (EMA) dosage form list](https://www.ema.europa.eu/documents/other/list-pharmaceutical-dosage-forms_en.xls).
-The `container` codelist is based on the Health Level Seven (HL7) Fast Healthcare Interoperability Resources (FHIR) [Medication knowledge package type codes](http://terminology.hl7.org/CodeSystem/medicationknowledge-package-type).
+The fields, definitions and codelists used in this extension are based on the following standards that are commonly used in the data on public medicine purchases:
 
-Standard | Maintainer |  Purpose
---|--|--
-[Anatomical, Therapeutic, Chemical classification system (ATC)](https://www.whocc.no/atc_ddd_index/)   | [World Health Organization](https://www.who.int/home)         | medicine classification
-[Drug](https://schema.org/Drug) (Schema.org type)        | [Schema.org Community Group](https://www.w3.org/community/schemaorg/)         | medicine classification
-[International nonproprietary names (INN)](https://www.who.int/teams/health-product-and-policy-standards/inn/)        | [World Health Organization](https://www.who.int/home)         | medicine names
-[MSH Products Price Guide](https://www.msh.org/resources/international-medical-products-price-guide)        | [Management Sciences for Health](https://www.msh.org/about-us)         | medicine list
-[Listado de Medicamentos Esenciales](https://www.mspbs.gov.py/dependencias/dggies/adjunto/db7bee-ListadodeMedicamentosEsenciales.pdf) | [Ministerio de Salud del Paraguay](https://www.mspbs.gov.py/index.php) | medicine list
-[Cuadro Básico y Catálogo de Medicamentos (CBM)](http://www.csg.gob.mx/contenidos/priorizacion/cuadro-basico/med/catalogos.html)| [Consejo de Salubridad General de México](http://www.csg.gob.mx/index.html) | medicine catalogue
-[United Nations Standard Products and Services Code (UNSPSC)](https://www.unspsc.org/) | [United Nations](https://www.un.org/en/) |classification of products and services, including medicines
-[Catálogo de Productos Farmacéuticos](http://observatorio.digemid.minsa.gob.pe/Precios/ProcesoL/Catalogo/CatalogoProductos.aspx)|[Ministerio de Salud de Perú](https://www.gob.pe/minsa/)| medicine catalogue
+Fields:
+- Most of the fields are based on the [Drug](https://schema.org/Drug) definition by the [Schema.org Community Group](https://www.w3.org/community/schemaorg/) and the 
+[Medication Resource](https://www.hl7.org/fhir/medication.html) from [Fast Healthcare Interoperability Resources (FHIR)](http://hl7.org/fhir/) standard.
+
+Codelists:
+- The `administrationRoute` codelist is based on the [FDA Route of Administration list](https://www.fda.gov/drugs/data-standards-manual-monographs/route-administration) (see `items.administrationRoute`).
+- The `dosageForm` codelist is based on the [European Medicines Agency (EMA) dosage form list](https://www.ema.europa.eu/documents/other/list-pharmaceutical-dosage-forms_en.xls).
+- The `container` codelist is based on FHIR [Medication knowledge package type codes](http://terminology.hl7.org/CodeSystem/medicationknowledge-package-type).
 
 ## Background
 
 This extension is based on research with 4 data users and 6 data publishers including public entities, journalists, medicine price analysts, and software developers for medicine purchase systems from 9 countries from Latin America, Europe, and Africa. 
 
-The extension includes the most used fields in different countries. The field names are standardized according to the [Anatomical, Therapeutic, Chemical classification system (ATC)](https://www.whocc.no/atc_ddd_index/), developed by the World Health Organization, and the Drug definition by [Schema.org](https://schema.org/Drug).
+The extension includes the most used fields in different countries.
 
 ## Issues
 
