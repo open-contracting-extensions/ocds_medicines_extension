@@ -65,48 +65,6 @@ The strength is expressed as "100 MG/ML", but the UN/CEFACT codes for unit codes
   }
 }
 ```
-This is an example of an item in the [UNOPS](https://datastudio.google.com/u/0/reporting/1lI9FpXAor0QmSmbZehZWmbrX4F-X1CLw/page/5UYMB?s=swplgxj_6no) system and how it would be represented with the extension.
-
-Description | Minimum dispensing unit
---|--
-Midazolam 5mg / solucion Parenteral | Envase por un 1 ml
-
-```json
-{
-  "tender": {
-    "items": [
-      {
-        "id": "1",
-        "description": "Midazolam 5mg / solucion Parenteral",
-        "dosageForm": "liquid",
-        "administrationRoute": "parenteral",
-        "container": {
-          "name": "jar",
-          "capacity": {
-            "unit": {
-              "scheme": "UNCEFACT",
-              "id": "ml"
-            },
-            "value": 1
-          }
-        },
-        "activeIngredients": [
-          {
-            "name": "Midazolam",
-            "strength": {
-              "unit": {
-                "scheme": "UNCEFACT",
-                "id": "mg"
-              },
-              "value": 5
-            }
-          }
-        ]
-      }
-    ]
-  }
-}
-```
 ### More than one Active Ingredient
 
 This is an [example](https://www.contrataciones.gov.py/licitaciones/convocatoria/391507-adquisicion-medicamentos-hospital-clinicas-1.html#pliego) of an item of a drug procurement process in Paraguay and how it would be represented with the extension.
