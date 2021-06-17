@@ -6,8 +6,6 @@ Adds fields to the item object relevant to the procurement of medicines.
 
 This extension is intended to be used in the medicines-related items in the tender, award, or contract stages, to add more specific details that a medicine item may have. To use it, set the properties that are known, including the active ingredients, dosage form, the medicine container, and the administration route.
 
-For the active ingredient strength and the container capacity, it’s recommended to use the [ATC](https://www.whocc.no/atc_ddd_index/) scheme in `capacity.unit.scheme` and `strength.unit.scheme`.
-
 If a contracting process is in the award or contract stage, it’s possible to know more information about the medicine, such as the brand, the manufacturer, the country of origin, the expiration date, if they must maintain a cold chain and all the other commercial, financial and logistical conditions. Use the [generic item attributes](https://extensions.open-contracting.org/en/extensions/itemAttributes/master/) extension for all the cases where the medicine item has other attributes not included in this extension.
 
 If a medicine item has more than one active ingredient, add each one to the `activeIngredients` array.
@@ -24,6 +22,8 @@ Description | Minimum dispensing unit
 --|--
 Acetilcisteina | ACETILCISTEINA-N 100 MG/ML SOLUCION PARA NEBULIZAR FRASCO 15-30 ML ENVASE INDIVIDUAL RESISTENTE CON SELLO QUE ASEGURE INVIOLABILIDAD DEL CONTENIDO
 
+The strength is expressed as "100 MG/ML", but the UN/CEFACT codes for unit codes only includes "mg/L", so 100mg/ml is converted to 100000mg/L.
+
 ```json
 {
   "tender": {
@@ -36,13 +36,13 @@ Acetilcisteina | ACETILCISTEINA-N 100 MG/ML SOLUCION PARA NEBULIZAR FRASCO 15-30
           "scheme": "UNSPSC",
           "uri": "https://apis.mercadopublico.cl/OCDS/data/productos/categoria/51161701"
         },
-        "dosageForm": "liquid",
-        "administrationRoute": "inhal",
+        "dosageForm": "solution",
+        "administrationRoute": "nasal",
         "container": {
           "name": "jar",
           "capacity": {
             "unit": {
-              "scheme": "ATC",
+              "scheme": "UNCEFACT",
               "id": "ml"
             },
             "value": "[15,30]"
@@ -53,10 +53,10 @@ Acetilcisteina | ACETILCISTEINA-N 100 MG/ML SOLUCION PARA NEBULIZAR FRASCO 15-30
             "name": "acetilcisteina",
             "strength": {
               "unit": {
-                "scheme": "ATC",
-                "id": "ml"
+                "scheme": "UNCEFACT",
+                "id": "ml/L"
               },
-              "value": 100
+              "value": 100000
             }
           }
         ]
@@ -79,12 +79,12 @@ Midazolam 5mg / solucion Parenteral | Envase por un 1 ml
         "id": "1",
         "description": "Midazolam 5mg / solucion Parenteral",
         "dosageForm": "liquid",
-        "administrationRoute": "P",
+        "administrationRoute": "parenteral",
         "container": {
           "name": "jar",
           "capacity": {
             "unit": {
-              "scheme": "ATC",
+              "scheme": "UNCEFACT",
               "id": "ml"
             },
             "value": 1
@@ -95,7 +95,7 @@ Midazolam 5mg / solucion Parenteral | Envase por un 1 ml
             "name": "Midazolam",
             "strength": {
               "unit": {
-                "scheme": "ATC",
+                "scheme": "UNCEFACT",
                 "id": "mg"
               },
               "value": 5
@@ -113,7 +113,7 @@ This is an [example](https://www.contrataciones.gov.py/licitaciones/convocatoria
 
 Description | Technical specifications | Unit of measurement | Presentation |  Delivery presentation
 --|--|--|--|--
-Clorhidrato de Bupivacaina Hiperbarica Inyectable     | clorhidrato de bupivacaina 25 mg. + dextrosa 82,5 mg. - solución inyectable | UNIDAD | VIAL | caja conteniendo 25 ampollas como minimo de ml.
+Clorhidrato de Bupivacaina Hiperbarica Inyectable     | clorhidrato de bupivacaina 25 mg. + dextrosa 82,5 mg. - solución inyectable | UNIDAD | VIAL | caja conteniendo 25 ampollas como minimo de 5 ml.
 
 ```json
 {
@@ -122,15 +122,15 @@ Clorhidrato de Bupivacaina Hiperbarica Inyectable     | clorhidrato de bupivacai
       {
         "id": "1",
         "dosageForm": "injection",
-        "administrationRoute": "TD",
+        "administrationRoute": "transdermal",
         "container": {
           "name": "blister",
           "capacity": {
             "unit": {
-              "scheme": "ATC",
+              "scheme": "UNCEFACT",
               "id": "ml"
             },
-            "value": 4
+            "value": "[5, INF]"
           }
         },
         "activeIngredients": [
@@ -138,7 +138,7 @@ Clorhidrato de Bupivacaina Hiperbarica Inyectable     | clorhidrato de bupivacai
             "name": "clorhidrato de bupivacaina",
             "strength": {
               "unit": {
-                "scheme": "ATC",
+                "scheme": "UNCEFACT",
                 "id": "mg"
               },
               "value": 250
@@ -148,7 +148,7 @@ Clorhidrato de Bupivacaina Hiperbarica Inyectable     | clorhidrato de bupivacai
             "name": "dextrosa",
             "strength": {
               "unit": {
-                "scheme": "ATC",
+                "scheme": "UNCEFACT",
                 "id": "mg"
               },
               "value": 82.5
