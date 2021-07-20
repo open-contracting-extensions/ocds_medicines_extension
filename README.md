@@ -135,7 +135,7 @@ Fields:
 Codelists:
 - The `administrationRoute` codelist is based on the [FDA Route of Administration list](https://www.fda.gov/drugs/data-standards-manual-monographs/route-administration) (see `items.administrationRoute`).
 - The `dosageForm` codelist is based on the [European Medicines Agency (EMA) dosage form list](https://www.ema.europa.eu/documents/other/list-pharmaceutical-dosage-forms_en.xls).
-- The `container` codelist is based on FHIR [Medication knowledge package type codes](http://terminology.hl7.org/CodeSystem/medicationknowledge-package-type).
+- The `container` codelist is a copy of FHIR's [Medication knowledge package type codes](http://terminology.hl7.org/CodeSystem/medicationknowledge-package-type).
 
 ## Background
 
