@@ -1,13 +1,23 @@
 Code,Title
-ampule,Ampule
+amp,Ampule
 bag,Bag
-blister,Blister
-bottle,Bottle
-cartridge,Cartridge
+blstrpk,Blister Pack
+bot,Bottle
+box,Box
+can,Can
+cart,Cartridge
+disk,Disk
+doset,Dosette
 jar,Jar
-preFilledSyringe,Pre-Filled Syringe
-sashet,Sashet
+jug,Jug
+minim,Minim
+nebamp,Nebule Amp
+ovul,Ovule
+pch,Pouch
+pkt,Packet
+sash,Sashet
 strip,Strip
 tin,Tin
+tub,Tub
 tube,Tube
 vial,Vial
