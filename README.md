@@ -22,7 +22,7 @@ Description | Minimum dispensing unit
 --|--
 Acetilcisteina | ACETILCISTEINA-N 100 MG/ML SOLUCION PARA NEBULIZAR FRASCO 15-30 ML ENVASE INDIVIDUAL RESISTENTE CON SELLO QUE ASEGURE INVIOLABILIDAD DEL CONTENIDO
 
-The strength is expressed as "100 MG/ML", but the UN/CEFACT codes for unit codes only includes "mg/L", so 100mg/ml is converted to 100000mg/L.
+The strength is expressed as "100 MG/ML". The UN/CEFACT [Recommendation 20 – Codes for Units of Measure Used in International Trade](https://unece.org/trade/uncefact/cl-recommendations) codelist includes units like mg/l, g/l and kg/l, but not mg/ml. So, "100 MG/ML" is expressed as 100 g/l below.
 
 ```json
 {
@@ -54,9 +54,9 @@ The strength is expressed as "100 MG/ML", but the UN/CEFACT codes for unit codes
             "strength": {
               "unit": {
                 "scheme": "UNCEFACT",
-                "id": "ml/L"
+                "id": "g/l"
               },
-              "value": 100000
+              "value": 100
             }
           }
         ]
