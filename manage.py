@@ -121,7 +121,7 @@ def update_dosage_form():
 
     with csv_dump('dosageForm.csv', ['Code', 'Title', 'Description']) as writer:
         for code in codes:
-            if 'SPRY' in code['code'] or code['code'] != 'SPRY':
+            if 'SPRY' in code['code'] and code['code'] != 'SPRY':
                 continue
             writer.writerow([code['code'], code['display'], code.get('definition')])
 
