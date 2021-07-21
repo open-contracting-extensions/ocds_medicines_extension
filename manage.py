@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 import csv
+import logging
 import sys
 from contextlib import contextmanager
 from pathlib import Path
 
 import click
-import logging
 import requests
 
 basedir = Path(__file__).resolve().parent
