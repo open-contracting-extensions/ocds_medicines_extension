@@ -6,6 +6,7 @@ from contextlib import contextmanager
 from pathlib import Path
 
 import click
+import lxml.html
 import requests
 
 basedir = Path(__file__).resolve().parent
@@ -16,6 +17,10 @@ handler.setFormatter(formatter)
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 logger.addHandler(handler)
+
+
+def parse(response):
+    return lxml.html.fromstring(response.text)
 
 
 @contextmanager
@@ -30,6 +35,39 @@ def csv_dump(filename, fieldnames):
         yield writer
     finally:
         f.close()
+
+
+@contextmanager
+def edqm(email, password, url):
+    with requests.Session() as session:
+        # Get the CSRF token.
+        response = session.get('https://standardterms.edqm.eu/user/login')
+        formkey = parse(response).xpath('//input[@name="_formkey"]/@value')[0]
+
+        # https://stackoverflow.com/a/12385661/244258
+        session.post('https://standardterms.edqm.eu', files={
+            'email': (None, email),
+            'password': (None, password),
+            '_formkey': (None, formkey),
+            '_formname': (None, 'login'),
+        })
+
+        writer = csv.writer(sys.stdout)
+
+        # The "export" links do not include definitions.
+        response = session.post(url)
+        for status in parse(response).xpath('//span[starts-with(@id, "status_0_")]'):
+            if status.xpath('./span/text()')[0] != 'Current':
+                continue
+
+            r = session.post(f"https://standardterms.edqm.eu/browse/get_details/{status.attrib['id'][9:]}/en")
+            document = parse(r)
+            keys = document.xpath('.//strong/text()')
+            values = [value.strip() for value in document.xpath('.//span[@class="span6"]/text()')]
+            properties = dict(zip(keys, values))
+
+            if properties['Domain'] != 'Veterinary only':
+                writer.writerow([properties['Term'], properties['Definition']])
 
 
 def hl7(codelist):
@@ -135,6 +173,20 @@ def update(ctx):
     ctx.invoke(update_administration_route)
     ctx.invoke(update_container)
     ctx.invoke(update_dosage_form)
+
+
+@cli.command()
+@click.argument('email')
+@click.argument('password')
+def print_edqm_container(email, password):
+    edqm(email, password, 'https://standardterms.edqm.eu/browse/get_back_links/en/PAC_PAC/786')
+
+
+@cli.command()
+@click.argument('email')
+@click.argument('password')
+def print_edqm_administration_route(email, password):
+    edqm(email, password, 'https://standardterms.edqm.eu/browse/get_concepts/ROA')
 
 
 if __name__ == '__main__':

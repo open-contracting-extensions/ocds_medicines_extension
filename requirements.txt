@@ -14,6 +14,8 @@ idna==3.2
     # via requests
 importlib-metadata==4.6.1
     # via click
+lxml==4.6.3
+    # via -r requirements.in
 requests==2.26.0
     # via -r requirements.in
 typing-extensions==3.10.0.0
