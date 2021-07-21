@@ -14,7 +14,7 @@ If a medicine item is packaged in a multi-drug container, use `items.quantity` f
 
 ## Examples
 
-### One Active Ingredient
+### One active ingredient
 
 This is an [example](https://api.mercadopublico.cl/APISOCDS/ocds/tender/734-82-LP14) of an item of a drug procurement process in Chile, and its modeling in the extension.
 
@@ -65,7 +65,7 @@ The strength is expressed as "100 MG/ML". The UN/CEFACT [Recommendation 20 – C
   }
 }
 ```
-### More than one Active Ingredient
+### More than one active ingredient
 
 This is an [example](https://www.contrataciones.gov.py/licitaciones/convocatoria/391507-adquisicion-medicamentos-hospital-clinicas-1.html#pliego) of an item of a drug procurement process in Paraguay and how it would be represented with the extension.
 
@@ -124,7 +124,7 @@ Clorhidrato de Bupivacaina Hiperbarica Inyectable     | clorhidrato de bupivacai
 }
 ```
 
-## Related Standards
+## Related standards
 
 The fields, definitions and codelists used in this extension are based on the following standards that are commonly used in the data on public medicine purchases:
 
@@ -139,9 +139,7 @@ Codelists:
 
 ## Background
 
-This extension is based on research with 4 data users and 6 data publishers including public entities, journalists, medicine price analysts, and software developers for medicine purchase systems from 9 countries from Latin America, Europe, and Africa. 
-
-The extension includes the most used fields in different countries.
+This extension is based on research with 4 data users and 6 data publishers including public entities, journalists, medicine price analysts, and software developers for medicine purchase systems from 9 countries in Latin America, Europe, and Africa. The extension includes the most used fields from the different countries.
 
 ## Issues
 
