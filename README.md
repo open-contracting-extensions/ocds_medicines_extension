@@ -133,9 +133,9 @@ Fields:
 [Medication Resource](https://www.hl7.org/fhir/medication.html) from [Fast Healthcare Interoperability Resources (FHIR)](http://hl7.org/fhir/) standard.
 
 Codelists:
-- The `administrationRoute` codelist is based on the [FDA Route of Administration list](https://www.fda.gov/drugs/data-standards-manual-monographs/route-administration) (see `items.administrationRoute`).
-- The `dosageForm` codelist is based on the [European Medicines Agency (EMA) dosage form list](https://www.ema.europa.eu/documents/other/list-pharmaceutical-dosage-forms_en.xls).
-- The `container` codelist is based on FHIR [Medication knowledge package type codes](http://terminology.hl7.org/CodeSystem/medicationknowledge-package-type).
+- The `administrationRoute` codelist contains the top-level concepts in HL7's [Route of Administration](https://terminology.hl7.org/CodeSystem/v3-RouteOfAdministration/) codelist, excluding any synonymous terms.
+- The `dosageForm` codelist contains the top-level concepts in HL7's [Orderable Drug Form](https://terminology.hl7.org/CodeSystem/v3-orderableDrugForm/) codelist, excluding the specific forms of sprays.
+- The `container` codelist is a copy of FHIR's [Medication Knowledge Package Type](https://terminology.hl7.org/CodeSystem/medicationknowledge-package-type/) codelist.
 
 ## Background
 
