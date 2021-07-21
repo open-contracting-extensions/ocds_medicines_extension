@@ -91,7 +91,7 @@ def update_administration_route():
     Update schema/codelists/administrationRoute.csv.
     """
     # https://terminology.hl7.org/CodeSystem/v3-RouteOfAdministration/
-    data, not_selectable = hl7('RouteOfAdministration')
+    codes, not_selectable = hl7('RouteOfAdministration')
 
     # "definition" is not used for Description, because it is the same as the "display", except for:
     #
