@@ -36,8 +36,8 @@ The strength is expressed as "100 MG/ML". The UN/CEFACT [Recommendation 20 – C
           "scheme": "UNSPSC",
           "uri": "https://apis.mercadopublico.cl/OCDS/data/productos/categoria/51161701"
         },
-        "dosageForm": "solution",
-        "administrationRoute": "nasal",
+        "dosageForm": "SOL",
+        "administrationRoute": "NASALINSTIL",
         "container": {
           "name": "jar",
           "capacity": {
@@ -79,10 +79,10 @@ Clorhidrato de Bupivacaina Hiperbarica Inyectable     | clorhidrato de bupivacai
     "items": [
       {
         "id": "1",
-        "dosageForm": "injection",
-        "administrationRoute": "transdermal",
+        "dosageForm": "SOL",
+        "administrationRoute": "TRNSDERM",
         "container": {
-          "name": "blister",
+          "name": "blstrpk",
           "capacity": {
             "unit": {
               "scheme": "UNCEFACT",
