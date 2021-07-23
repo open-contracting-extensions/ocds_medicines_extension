@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import csv
 import os
+import re
 import sys
 from contextlib import contextmanager
 from pathlib import Path
@@ -222,19 +223,23 @@ def download_inn_lists():
     response = requests.get('https://www.who.int/teams/health-product-and-policy-standards/inn/inn-lists')
     response.raise_for_status()
 
-    hrefs = parse(response).xpath('//div[@id="PageContent_TA60FDAEF017_Col01"]//@href')
-    basenames = [''.join(href.lower().split('-', 2)[1:]) + '.pdf' for href in hrefs]
-
+    document = parse(response)
     base_url = 'https://cdn.who.int/media/docs/default-source/international-nonproprietary-names-(inn)/'
-    for basename in basenames:
-        filename = os.path.join('inn', basename)
-        if not os.path.exists(filename):
-            click.echo(f'INFO - Downloading {basename}')
-            with open(filename, 'wb') as f:
+    for column, prefix in (('PageContent_C021_Col00', 'pl'), ('PageContent_C021_Col01', 'rl')):
+        for href in document.xpath(f'//div[@id="{column}"]//@href'):
+            # Handle exceptions like:
+            # https://www.who.int/publications/m/item/inn-proposed-list-57
+            # https://www.who.int/publications/m/item/inn-pl-125-covid
+            suffix = re.search(r'\d+.*', href.lower()).group(0)
+            basename = f'{prefix}{suffix}.pdf'
+            filename = os.path.join('inn', basename)
+            if not os.path.exists(filename):
+                click.echo(f'INFO - Downloading {basename}')
                 response = requests.get(base_url + basename)
                 response.raise_for_status()
 
-                f.write(response.content)
+                with open(filename, 'wb') as f:
+                    f.write(response.content)
 
 
 if __name__ == '__main__':
