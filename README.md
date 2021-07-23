@@ -28,6 +28,8 @@ Acetilcisteina | ACETILCISTEINA-N 100 MG/ML SOLUCION PARA NEBULIZAR FRASCO 15-30
 
 The strength is expressed as "100 MG/ML". The UN/CEFACT [Recommendation 20 – Codes for Units of Measure Used in International Trade](https://unece.org/trade/uncefact/cl-recommendations) codelist includes units like mg/l, g/l and kg/l, but not mg/ml. So, "100 MG/ML" is expressed as 100 g/l below.
 
+It is recommended to use [International Nonproprietary Names (INN)](https://www.who.int/teams/health-product-and-policy-standards/inn) for active ingredients. In Part IV of the [INN Stem Book 2018](https://www.who.int/teams/health-product-and-policy-standards/inn/stembook), we find the INN "acetylcysteine" under the stem "-steine".
+
 Based on this information, we can add the `dosageForm`, `administrationRoute`, `container` and `activeIngredients`.
 
 ```json
@@ -56,7 +58,7 @@ Based on this information, we can add the `dosageForm`, `administrationRoute`, `
         },
         "activeIngredients": [
           {
-            "name": "acetilcisteina",
+            "name": "acetylcysteine",
             "strength": {
               "unit": {
                 "scheme": "UNCEFACT",
@@ -81,6 +83,8 @@ Description | Technical specifications | Unit of measurement | Presentation |  D
 -|-|-|-|-
 Clorhidrato de Bupivacaina Hiperbarica Inyectable | clorhidrato de bupivacaina 25 mg. + dextrosa 82,5 mg. - solución inyectable | UNIDAD | AMPOLLA | ampollas como minimo de 5 ml.
 
+It is recommended to use [International Nonproprietary Names (INN)](https://www.who.int/teams/health-product-and-policy-standards/inn) for active ingredients. In Part IV of the [INN Stem Book 2018](https://www.who.int/teams/health-product-and-policy-standards/inn/stembook), we find the INN "bupivacaine" under the stem "-caine". Annex 2 describes how to name acid salts: in this case, "bupivacaine hydrochloride".
+
 Based on this information, we can add the `dosageForm`, `administrationRoute`, `container` and `activeIngredients`.
 
 ```json
@@ -103,7 +107,7 @@ Based on this information, we can add the `dosageForm`, `administrationRoute`, `
         },
         "activeIngredients": [
           {
-            "name": "clorhidrato de bupivacaina",
+            "name": "bupivacaine hydrochloride",
             "strength": {
               "unit": {
                 "scheme": "UNCEFACT",
