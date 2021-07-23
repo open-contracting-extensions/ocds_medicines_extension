@@ -18,13 +18,17 @@ If a medicine item is packaged in a multi-drug container, use `items.quantity` f
 
 ### One active ingredient
 
-This is an [example](https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?qs=OE1kSVnLUBVxS5IkXPNLRQ==) (see item 3) and the [OCDS version](https://api.mercadopublico.cl/APISOCDS/ocds/tender/734-82-LP14) of an item of a drug procurement process in Chile, and its modeling in the extension.
+In this example, we demonstrate how to use this extension to describe a [drug procurement process](https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?qs=OE1kSVnLUBVxS5IkXPNLRQ==) from Chile. (You can view its [original OCDS data](https://api.mercadopublico.cl/APISOCDS/ocds/tender/734-82-LP14).)
+
+Item 3 is described as:
 
 Description | Minimum dispensing unit
---|--
+-|-
 Acetilcisteina | ACETILCISTEINA-N 100 MG/ML SOLUCION PARA NEBULIZAR FRASCO 15-30 ML ENVASE INDIVIDUAL RESISTENTE CON SELLO QUE ASEGURE INVIOLABILIDAD DEL CONTENIDO
 
 The strength is expressed as "100 MG/ML". The UN/CEFACT [Recommendation 20 – Codes for Units of Measure Used in International Trade](https://unece.org/trade/uncefact/cl-recommendations) codelist includes units like mg/l, g/l and kg/l, but not mg/ml. So, "100 MG/ML" is expressed as 100 g/l below.
+
+Based on this information, we can add the `dosageForm`, `administrationRoute`, `container` and `activeIngredients`.
 
 ```json
 {
@@ -69,11 +73,15 @@ The strength is expressed as "100 MG/ML". The UN/CEFACT [Recommendation 20 – C
 ```
 ### More than one active ingredient
 
-This is an [example](https://www.contrataciones.gov.py/licitaciones/convocatoria/391507-adquisicion-medicamentos-hospital-clinicas-1.html#pliego) (see "Suministros requeridos - especificaciones técnicas", LOTE N° 8 - ANESTESICOS LOCALES - 2, item 1) and the [OCDS version](https://contrataciones.gov.py/datos/api/v3/doc/ocds/record/ocds-03ad3f-391507) of an item of a drug procurement process in Paraguay and how it would be represented with the extension.
+In this example, we demonstrate how to use this extension to describe a [drug procurement process](https://www.contrataciones.gov.py/licitaciones/convocatoria/391507-adquisicion-medicamentos-hospital-clinicas-1.html#pliego) from Paraguay. (You can view its [original OCDS data](https://contrataciones.gov.py/datos/api/v3/doc/ocds/record/ocds-03ad3f-391507).)
+
+In the "Suministros requeridos - especificaciones técnicas" tab, item 1 of lot 8 ("LOTE N° 8 - ANESTESICOS LOCALES - 2") is described as:
 
 Description | Technical specifications | Unit of measurement | Presentation |  Delivery presentation
---|--|--|--|--
-Clorhidrato de Bupivacaina Hiperbarica Inyectable     | clorhidrato de bupivacaina 25 mg. + dextrosa 82,5 mg. - solución inyectable | UNIDAD | AMPOLLA | ampollas como minimo de 5 ml.
+-|-|-|-|-
+Clorhidrato de Bupivacaina Hiperbarica Inyectable | clorhidrato de bupivacaina 25 mg. + dextrosa 82,5 mg. - solución inyectable | UNIDAD | AMPOLLA | ampollas como minimo de 5 ml.
+
+Based on this information, we can add the `dosageForm`, `administrationRoute`, `container` and `activeIngredients`.
 
 ```json
 {
