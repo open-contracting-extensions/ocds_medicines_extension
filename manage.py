@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import csv
-import logging
+import os
 import sys
 from contextlib import contextmanager
 from pathlib import Path
@@ -11,16 +11,13 @@ import requests
 
 basedir = Path(__file__).resolve().parent
 
-formatter = logging.Formatter('%(levelname)s - %(message)s')
-handler = logging.StreamHandler(sys.stdout)
-handler.setFormatter(formatter)
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
-logger.addHandler(handler)
-
 
 def parse(response):
     return lxml.html.fromstring(response.text)
+
+
+def warn(message):
+    click.secho(message, err=True, fg='yellow')
 
 
 @contextmanager
@@ -92,7 +89,17 @@ def hl7(codelist):
                 code['properties'][name] = value
 
     not_selectable = {code['code'] for code in data['concept'] if code['properties'].get('notSelectable')}
-    logger.info('%s properties: %s', codelist, sorted(properties))
+
+    if codelist == 'RouteOfAdministration':
+        expected = set(['internalId', 'notSelectable', 'status', 'subsumedBy', 'synonymCode'])
+    elif codelist == 'orderableDrugForm':
+        expected = set(['internalId', 'notSelectable', 'status', 'subsumedBy'])
+    else:
+        expected = set()
+
+    difference = properties - expected
+    if difference:
+        warn(f'{codelist}: unexpected new properties: {sorted(difference)}')
 
     codes = []
     for code in data['concept']:
@@ -119,8 +126,14 @@ def update_container():
     # https://terminology.hl7.org/CodeSystem/medicationknowledge-package-type/
     data = requests.get('https://terminology.hl7.org/CodeSystem-medicationknowledge-package-type.json').json()
 
-    with csv_dump('container.csv', ['Code', 'Title']) as writer:
-        writer.writerows([[code['code'], code['display']] for code in data['concept']])
+    descriptions = {}
+    with (basedir / 'codelists' / 'container.csv').open() as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            descriptions[row['Code']] = row['Description']
+
+    with csv_dump('container.csv', ['Code', 'Title', 'Description']) as writer:
+        writer.writerows([[code['code'], code['display'], descriptions[code['code']]] for code in data['concept']])
 
 
 @cli.command()
@@ -145,7 +158,7 @@ def update_administration_route():
                 if code['code'] in ('ORINHL', 'RESPINHL'):
                     continue
                 elif code['code'] != 'IPINHL':
-                    logger.warning('RouteOfAdministration: unexpected synonymous code: %s', code)
+                    warn(f'RouteOfAdministration: unexpected synonymous code: {code}')
             writer.writerow([code['code'], code['display'][0].upper() + code['display'][1:]])
 
 
