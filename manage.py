@@ -207,11 +207,11 @@ def download_inn_lists():
     os.makedirs('inn', exist_ok=True)
 
     response = requests.get('https://www.who.int/teams/health-product-and-policy-standards/inn/inn-lists')
-    number = int(parse(response).xpath('//div[@id="PageContent_C021_Col01"]//@href')[0].rsplit('-', 1)[1])
+    hrefs = parse(response).xpath('//div[@id="PageContent_TA60FDAEF017_Col01"]//@href')
+    basenames = [''.join(href.lower().split('-', 2)[1:]) for href in hrefs]
 
     base_url = 'https://cdn.who.int/media/docs/default-source/international-nonproprietary-names-(inn)/'
-    for number in range(1, number + 1):
-        basename = f'rl{number:02}.pdf'
+    for basename in basenames:
         filename = os.path.join('inn', basename)
         if not os.path.exists(filename):
             click.echo(f'INFO - Downloading {basename}')
