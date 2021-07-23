@@ -69,11 +69,11 @@ The strength is expressed as "100 MG/ML". The UN/CEFACT [Recommendation 20 – C
 ```
 ### More than one active ingredient
 
-This is an [example](https://www.contrataciones.gov.py/licitaciones/convocatoria/391507-adquisicion-medicamentos-hospital-clinicas-1.html#pliego) of an item of a drug procurement process in Paraguay and how it would be represented with the extension.
+This is an [example](https://www.contrataciones.gov.py/licitaciones/convocatoria/391507-adquisicion-medicamentos-hospital-clinicas-1.html#pliego) (see "Suministros requeridos - especificaciones técnicas", LOTE N° 8 - ANESTESICOS LOCALES - 2, item 1) and the [OCDS version](https://contrataciones.gov.py/datos/api/v3/doc/ocds/record/ocds-03ad3f-391507) of an item of a drug procurement process in Paraguay and how it would be represented with the extension.
 
 Description | Technical specifications | Unit of measurement | Presentation |  Delivery presentation
 --|--|--|--|--
-Clorhidrato de Bupivacaina Hiperbarica Inyectable     | clorhidrato de bupivacaina 25 mg. + dextrosa 82,5 mg. - solución inyectable | UNIDAD | VIAL | caja conteniendo 25 ampollas como minimo de 5 ml.
+Clorhidrato de Bupivacaina Hiperbarica Inyectable     | clorhidrato de bupivacaina 25 mg. + dextrosa 82,5 mg. - solución inyectable | UNIDAD | AMPOLLA | ampollas como minimo de 5 ml.
 
 ```json
 {
@@ -82,9 +82,9 @@ Clorhidrato de Bupivacaina Hiperbarica Inyectable     | clorhidrato de bupivacai
       {
         "id": "1",
         "dosageForm": "SOL",
-        "administrationRoute": "TRNSDERM",
+        "administrationRoute": "ISINJ",
         "container": {
-          "name": "blstrpk",
+          "name": "amp",
           "capacity": {
             "unit": {
               "scheme": "UNCEFACT",
@@ -101,7 +101,7 @@ Clorhidrato de Bupivacaina Hiperbarica Inyectable     | clorhidrato de bupivacai
                 "scheme": "UNCEFACT",
                 "id": "mg"
               },
-              "value": 250
+              "value": 25
             }
           },
           {
