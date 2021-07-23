@@ -41,7 +41,7 @@ The strength is expressed as "100 MG/ML". The UN/CEFACT [Recommendation 20 – C
         "dosageForm": "SOL",
         "administrationRoute": "NASINHL",
         "container": {
-          "name": "jar",
+          "name": "vial",
           "capacity": {
             "unit": {
               "scheme": "UNCEFACT",
