@@ -78,7 +78,7 @@ def hl7(codelist):
     response = requests.get(f'https://terminology.hl7.org/CodeSystem-v3-{codelist}.json')
     response.raise_for_status()
 
-    data = reponse.json()
+    data = response.json()
 
     multi_value_properties = ('subsumedBy', 'synonymCode')
     properties = set()
