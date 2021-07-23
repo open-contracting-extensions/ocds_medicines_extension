@@ -18,7 +18,7 @@ If a medicine item is packaged in a multi-drug container, use `items.quantity` f
 
 ### One active ingredient
 
-This is an [example](https://api.mercadopublico.cl/APISOCDS/ocds/tender/734-82-LP14) of an item of a drug procurement process in Chile, and its modeling in the extension.
+This is an [example](https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?qs=OE1kSVnLUBVxS5IkXPNLRQ==) (see item 3) and the [OCDS version](https://api.mercadopublico.cl/APISOCDS/ocds/tender/734-82-LP14) of an item of a drug procurement process in Chile, and its modeling in the extension.
 
 Description | Minimum dispensing unit
 --|--
@@ -39,7 +39,7 @@ The strength is expressed as "100 MG/ML". The UN/CEFACT [Recommendation 20 – C
           "uri": "https://apis.mercadopublico.cl/OCDS/data/productos/categoria/51161701"
         },
         "dosageForm": "SOL",
-        "administrationRoute": "NASALINSTIL",
+        "administrationRoute": "NASINHL",
         "container": {
           "name": "jar",
           "capacity": {
