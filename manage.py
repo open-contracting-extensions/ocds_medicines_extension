@@ -202,5 +202,22 @@ def print_edqm_administration_route(email, password):
     edqm(email, password, 'https://standardterms.edqm.eu/browse/get_concepts/ROA')
 
 
+@cli.command()
+def download_inn_lists():
+    os.makedirs('inn', exist_ok=True)
+
+    response = requests.get('https://www.who.int/teams/health-product-and-policy-standards/inn/inn-lists')
+    number = int(parse(response).xpath('//div[@id="PageContent_C021_Col01"]//@href')[0].rsplit('-', 1)[1])
+
+    base_url = 'https://cdn.who.int/media/docs/default-source/international-nonproprietary-names-(inn)/'
+    for number in range(1, number + 1):
+        basename = f'rl{number:02}.pdf'
+        filename = os.path.join('inn', basename)
+        if not os.path.exists(filename):
+            click.echo(f'INFO - Downloading {basename}')
+            with open(filename, 'wb') as f:
+                f.write(requests.get(base_url + basename).content)
+
+
 if __name__ == '__main__':
     cli()
