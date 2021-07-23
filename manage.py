@@ -223,6 +223,7 @@ def download_inn_lists():
     response = requests.get('https://www.who.int/teams/health-product-and-policy-standards/inn/inn-lists')
     response.raise_for_status()
 
+    # Note: PDFs are scans before RL46 (September 2001) and PL86 (March 2002).
     document = parse(response)
     base_url = 'https://cdn.who.int/media/docs/default-source/international-nonproprietary-names-(inn)/'
     for column, prefix in (('PageContent_C021_Col00', 'pl'), ('PageContent_C021_Col01', 'rl')):
