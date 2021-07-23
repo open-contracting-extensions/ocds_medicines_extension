@@ -39,26 +39,32 @@ def edqm(email, password, url):
     with requests.Session() as session:
         # Get the CSRF token.
         response = session.get('https://standardterms.edqm.eu/user/login')
+        response.raise_for_status()
+
         formkey = parse(response).xpath('//input[@name="_formkey"]/@value')[0]
 
         # https://stackoverflow.com/a/12385661/244258
-        session.post('https://standardterms.edqm.eu', files={
+        response = session.post('https://standardterms.edqm.eu', files={
             'email': (None, email),
             'password': (None, password),
             '_formkey': (None, formkey),
             '_formname': (None, 'login'),
         })
+        response.raise_for_status()
+
+        # The "export" links do not include definitions, so we scrape the page.
+        response = session.post(url)
+        response.raise_for_status()
 
         writer = csv.writer(sys.stdout)
-
-        # The "export" links do not include definitions.
-        response = session.post(url)
         for status in parse(response).xpath('//span[starts-with(@id, "status_0_")]'):
             if status.xpath('./span/text()')[0] != 'Current':
                 continue
 
-            r = session.post(f"https://standardterms.edqm.eu/browse/get_details/{status.attrib['id'][9:]}/en")
-            document = parse(r)
+            response = session.post(f"https://standardterms.edqm.eu/browse/get_details/{status.attrib['id'][9:]}/en")
+            response.raise_for_status()
+
+            document = parse(response)
             keys = document.xpath('.//strong/text()')
             values = [value.strip() for value in document.xpath('.//span[@class="span6"]/text()')]
             properties = dict(zip(keys, values))
@@ -68,7 +74,10 @@ def edqm(email, password, url):
 
 
 def hl7(codelist):
-    data = requests.get(f'https://terminology.hl7.org/CodeSystem-v3-{codelist}.json').json()
+    response = requests.get(f'https://terminology.hl7.org/CodeSystem-v3-{codelist}.json')
+    response.raise_for_status()
+
+    data = reponse.json()
 
     multi_value_properties = ('subsumedBy', 'synonymCode')
     properties = set()
@@ -123,14 +132,18 @@ def update_container():
     """
     Update schema/codelists/container.csv from HL7.
     """
-    # https://terminology.hl7.org/CodeSystem/medicationknowledge-package-type/
-    data = requests.get('https://terminology.hl7.org/CodeSystem-medicationknowledge-package-type.json').json()
-
+    # Retain the descriptions from EDQM.
     descriptions = {}
     with (basedir / 'codelists' / 'container.csv').open() as f:
         reader = csv.DictReader(f)
         for row in reader:
             descriptions[row['Code']] = row['Description']
+
+    # https://terminology.hl7.org/CodeSystem/medicationknowledge-package-type/
+    response = requests.get('https://terminology.hl7.org/CodeSystem-medicationknowledge-package-type.json')
+    response.raise_for_status()
+
+    data = response.json()
 
     with csv_dump('container.csv', ['Code', 'Title', 'Description']) as writer:
         writer.writerows([[code['code'], code['display'], descriptions[code['code']]] for code in data['concept']])
@@ -207,8 +220,10 @@ def download_inn_lists():
     os.makedirs('inn', exist_ok=True)
 
     response = requests.get('https://www.who.int/teams/health-product-and-policy-standards/inn/inn-lists')
+    response.raise_for_status()
+
     hrefs = parse(response).xpath('//div[@id="PageContent_TA60FDAEF017_Col01"]//@href')
-    basenames = [''.join(href.lower().split('-', 2)[1:]) for href in hrefs]
+    basenames = [''.join(href.lower().split('-', 2)[1:]) + '.pdf' for href in hrefs]
 
     base_url = 'https://cdn.who.int/media/docs/default-source/international-nonproprietary-names-(inn)/'
     for basename in basenames:
@@ -216,7 +231,10 @@ def download_inn_lists():
         if not os.path.exists(filename):
             click.echo(f'INFO - Downloading {basename}')
             with open(filename, 'wb') as f:
-                f.write(requests.get(base_url + basename).content)
+                response = requests.get(base_url + basename)
+                response.raise_for_status()
+
+                f.write(response.content)
 
 
 if __name__ == '__main__':
