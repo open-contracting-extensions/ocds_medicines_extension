@@ -4,9 +4,11 @@ Adds fields to the item object relevant to the procurement of medicines.
 
 ## Guidance
 
-This extension is intended to be used in the medicines-related items in the tender, award, or contract stages, to add more specific details that a medicine item may have. To use it, set the properties that are known, including the active ingredients, dosage form, the medicine container, and the administration route.
+This extension is used to describe medicinal products at the tender, award and/or contract stages. Using this extension, a publisher can specify the medicinal product's active ingredients and their strength, the dosage form, the medicine's container, and the administration route. In doing so, it makes it easier to compare the procurement of medicinal products across jurisdictions, and thereby supports [external reference pricing](https://en.wikipedia.org/wiki/External_reference_pricing)
 
-This extension is designed to support [external reference pricing](https://en.wikipedia.org/wiki/External_reference_pricing). Dosage forms and container sizes differ significantly across countries, which makes comparison difficult. To ease comparison, the extension provides standardized codelists for the administration route, dosage form and immediate container, based on [Health Level Seven (HL7)](https://www.hl7.org), a set of international standards for health data. That said, if you haven't adopted and can't map your values to the HL7 codes, you may use your own codes. To allow a user to interpret your codes, you should describe the codelists, and how to find the definitions of codes, in your [publication policy](https://standard.open-contracting.org/latest/en/guidance/publish/#finalize-your-publication-policy).
+Dosage forms and container sizes differ significantly across countries, which makes comparison difficult. To ease comparison, the extension provides standardized codelists for the dosage form, immediate container and administration route, based on [Health Level Seven (HL7)](https://www.hl7.org), a set of international standards for health data. That said, if you haven't adopted and can't map your values to the HL7 codes, you may use your own codes. To allow a user to interpret your codes, you should describe the codelists, and how to find the definitions of codes, in your [publication policy](https://standard.open-contracting.org/latest/en/guidance/publish/#finalize-your-publication-policy).
+
+For the names of active ingredients, it is recommended to use [International Nonproprietary Names (INN)](https://www.who.int/teams/health-product-and-policy-standards/inn). The World Health Organization (WHO) maintains a cumulative list of all INNs, with equivalent names in Latin, English, French, Spanish, Arabic, Chinese and Russian. To ease comparison, it is recommended to use the lowercase Latin name.
 
 If a contracting process is in the award or contract stage, it’s possible to know more information about the medicine, such as the brand, the manufacturer, the country of origin, the expiration date, if they must maintain a cold chain and all the other commercial, financial and logistical conditions. Use the [generic item attributes](https://extensions.open-contracting.org/en/extensions/itemAttributes/master/) extension for all the cases where the medicine item has other attributes not included in this extension.
 
@@ -27,8 +29,6 @@ Description | Minimum dispensing unit
 Acetilcisteina | ACETILCISTEINA-N 100 MG/ML SOLUCION PARA NEBULIZAR FRASCO 15-30 ML ENVASE INDIVIDUAL RESISTENTE CON SELLO QUE ASEGURE INVIOLABILIDAD DEL CONTENIDO
 
 The strength is expressed as "100 MG/ML". The UN/CEFACT [Recommendation 20 – Codes for Units of Measure Used in International Trade](https://unece.org/trade/uncefact/cl-recommendations) codelist includes units like mg/l, g/l and kg/l, but not mg/ml. So, "100 MG/ML" is expressed as 100 g/l below.
-
-It is recommended to use [International Nonproprietary Names (INN)](https://www.who.int/teams/health-product-and-policy-standards/inn) for active ingredients. In Part IV of the [INN Stem Book 2018](https://www.who.int/teams/health-product-and-policy-standards/inn/stembook), we find the INN "acetylcysteine" under the stem "-steine".
 
 Based on this information, we can add the `dosageForm`, `administrationRoute`, `container` and `activeIngredients`.
 
@@ -58,7 +58,7 @@ Based on this information, we can add the `dosageForm`, `administrationRoute`, `
         },
         "activeIngredients": [
           {
-            "name": "acetylcysteine",
+            "name": "acetylcysteinum",
             "strength": {
               "unit": {
                 "scheme": "UNCEFACT",
@@ -83,7 +83,7 @@ Description | Technical specifications | Unit of measurement | Presentation |  D
 -|-|-|-|-
 Clorhidrato de Bupivacaina Hiperbarica Inyectable | clorhidrato de bupivacaina 25 mg. + dextrosa 82,5 mg. - solución inyectable | UNIDAD | AMPOLLA | ampollas como minimo de 5 ml.
 
-It is recommended to use [International Nonproprietary Names (INN)](https://www.who.int/teams/health-product-and-policy-standards/inn) for active ingredients. In Part IV of the [INN Stem Book 2018](https://www.who.int/teams/health-product-and-policy-standards/inn/stembook), we find the INN "bupivacaine" under the stem "-caine". Annex 2 describes how to name acid salts: in this case, "bupivacaine hydrochloride".
+For the name of the active ingredient, Annex 2 of the [INN Stem Book 2018](https://www.who.int/teams/health-product-and-policy-standards/inn/stembook), describes how to name acid salts: in this case, "bupivacainum hydrochloridum".
 
 Based on this information, we can add the `dosageForm`, `administrationRoute`, `container` and `activeIngredients`.
 
@@ -107,7 +107,7 @@ Based on this information, we can add the `dosageForm`, `administrationRoute`, `
         },
         "activeIngredients": [
           {
-            "name": "bupivacaine hydrochloride",
+            "name": "bupivacainum hydrochloridum",
             "strength": {
               "unit": {
                 "scheme": "UNCEFACT",
