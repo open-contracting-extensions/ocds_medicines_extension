@@ -4,7 +4,7 @@ Adds fields to the item object relevant to the procurement of medicines.
 
 ## Guidance
 
-This extension is used to describe medicinal products at the tender, award and/or contract stages. Using this extension, a publisher can specify the medicinal product's active ingredients and their strength, the dosage form, the medicine's container, and the administration route. In doing so, it makes it easier to compare the procurement of medicinal products across jurisdictions, and thereby supports [external reference pricing](https://en.wikipedia.org/wiki/External_reference_pricing)
+This extension is used to describe medicinal products at the tender, award and/or contract stages. Using this extension, a publisher can specify the medicinal product's active ingredients and their strength, the dosage form, the medicine's container, and the administration route. In doing so, it makes it easier to compare the procurement of medicinal products across jurisdictions, and thereby supports [external reference pricing](https://en.wikipedia.org/wiki/External_reference_pricing).
 
 Dosage forms and container sizes differ significantly across countries, which makes comparison difficult. To ease comparison, the extension provides standardized codelists for the dosage form, immediate container and administration route, based on [Health Level Seven (HL7)](https://www.hl7.org), a set of international standards for health data. That said, if you haven't adopted and can't map your values to the HL7 codes, you may use your own codes. To allow a user to interpret your codes, you should describe the codelists, and how to find the definitions of codes, in your [publication policy](https://standard.open-contracting.org/latest/en/guidance/publish/#finalize-your-publication-policy).
 
