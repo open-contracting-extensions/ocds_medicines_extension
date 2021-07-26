@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import csv
-import logging
+import os
+import re
 import sys
 from contextlib import contextmanager
 from pathlib import Path
@@ -11,16 +12,13 @@ import requests
 
 basedir = Path(__file__).resolve().parent
 
-formatter = logging.Formatter('%(levelname)s - %(message)s')
-handler = logging.StreamHandler(sys.stdout)
-handler.setFormatter(formatter)
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
-logger.addHandler(handler)
-
 
 def parse(response):
     return lxml.html.fromstring(response.text)
+
+
+def warn(message):
+    click.secho(message, err=True, fg='yellow')
 
 
 @contextmanager
@@ -42,26 +40,32 @@ def edqm(email, password, url):
     with requests.Session() as session:
         # Get the CSRF token.
         response = session.get('https://standardterms.edqm.eu/user/login')
+        response.raise_for_status()
+
         formkey = parse(response).xpath('//input[@name="_formkey"]/@value')[0]
 
         # https://stackoverflow.com/a/12385661/244258
-        session.post('https://standardterms.edqm.eu', files={
+        response = session.post('https://standardterms.edqm.eu', files={
             'email': (None, email),
             'password': (None, password),
             '_formkey': (None, formkey),
             '_formname': (None, 'login'),
         })
+        response.raise_for_status()
+
+        # The "export" links do not include definitions, so we scrape the page.
+        response = session.post(url)
+        response.raise_for_status()
 
         writer = csv.writer(sys.stdout)
-
-        # The "export" links do not include definitions.
-        response = session.post(url)
         for status in parse(response).xpath('//span[starts-with(@id, "status_0_")]'):
             if status.xpath('./span/text()')[0] != 'Current':
                 continue
 
-            r = session.post(f"https://standardterms.edqm.eu/browse/get_details/{status.attrib['id'][9:]}/en")
-            document = parse(r)
+            response = session.post(f"https://standardterms.edqm.eu/browse/get_details/{status.attrib['id'][9:]}/en")
+            response.raise_for_status()
+
+            document = parse(response)
             keys = document.xpath('.//strong/text()')
             values = [value.strip() for value in document.xpath('.//span[@class="span6"]/text()')]
             properties = dict(zip(keys, values))
@@ -71,7 +75,10 @@ def edqm(email, password, url):
 
 
 def hl7(codelist):
-    data = requests.get(f'https://terminology.hl7.org/CodeSystem-v3-{codelist}.json').json()
+    response = requests.get(f'https://terminology.hl7.org/CodeSystem-v3-{codelist}.json')
+    response.raise_for_status()
+
+    data = response.json()
 
     multi_value_properties = ('subsumedBy', 'synonymCode')
     properties = set()
@@ -92,7 +99,17 @@ def hl7(codelist):
                 code['properties'][name] = value
 
     not_selectable = {code['code'] for code in data['concept'] if code['properties'].get('notSelectable')}
-    logger.info('%s properties: %s', codelist, sorted(properties))
+
+    if codelist == 'RouteOfAdministration':
+        expected = set(['internalId', 'notSelectable', 'status', 'subsumedBy', 'synonymCode'])
+    elif codelist == 'orderableDrugForm':
+        expected = set(['internalId', 'notSelectable', 'status', 'subsumedBy'])
+    else:
+        expected = set()
+
+    difference = properties - expected
+    if difference:
+        warn(f'{codelist}: unexpected new properties: {sorted(difference)}')
 
     codes = []
     for code in data['concept']:
@@ -116,11 +133,21 @@ def update_container():
     """
     Update schema/codelists/container.csv from HL7.
     """
-    # https://terminology.hl7.org/CodeSystem/medicationknowledge-package-type/
-    data = requests.get('https://terminology.hl7.org/CodeSystem-medicationknowledge-package-type.json').json()
+    # Retain the descriptions from EDQM.
+    descriptions = {}
+    with (basedir / 'codelists' / 'container.csv').open() as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            descriptions[row['Code']] = row['Description']
 
-    with csv_dump('container.csv', ['Code', 'Title']) as writer:
-        writer.writerows([[code['code'], code['display']] for code in data['concept']])
+    # https://terminology.hl7.org/CodeSystem/medicationknowledge-package-type/
+    response = requests.get('https://terminology.hl7.org/CodeSystem-medicationknowledge-package-type.json')
+    response.raise_for_status()
+
+    data = response.json()
+
+    with csv_dump('container.csv', ['Code', 'Title', 'Description']) as writer:
+        writer.writerows([[code['code'], code['display'], descriptions[code['code']]] for code in data['concept']])
 
 
 @cli.command()
@@ -145,7 +172,7 @@ def update_administration_route():
                 if code['code'] in ('ORINHL', 'RESPINHL'):
                     continue
                 elif code['code'] != 'IPINHL':
-                    logger.warning('RouteOfAdministration: unexpected synonymous code: %s', code)
+                    warn(f'RouteOfAdministration: unexpected synonymous code: {code}')
             writer.writerow([code['code'], code['display'][0].upper() + code['display'][1:]])
 
 
@@ -187,6 +214,33 @@ def print_edqm_container(email, password):
 @click.argument('password')
 def print_edqm_administration_route(email, password):
     edqm(email, password, 'https://standardterms.edqm.eu/browse/get_concepts/ROA')
+
+
+@cli.command()
+def download_inn_lists():
+    os.makedirs('inn', exist_ok=True)
+
+    response = requests.get('https://www.who.int/teams/health-product-and-policy-standards/inn/inn-lists')
+    response.raise_for_status()
+
+    # Note: PDFs are scans before RL46 (September 2001) and PL86 (March 2002).
+    document = parse(response)
+    base_url = 'https://cdn.who.int/media/docs/default-source/international-nonproprietary-names-(inn)/'
+    for column, prefix in (('PageContent_C021_Col00', 'pl'), ('PageContent_C021_Col01', 'rl')):
+        for href in document.xpath(f'//div[@id="{column}"]//@href'):
+            # Handle exceptions like:
+            # https://www.who.int/publications/m/item/inn-proposed-list-57
+            # https://www.who.int/publications/m/item/inn-pl-125-covid
+            suffix = re.search(r'\d+.*', href.lower()).group(0)
+            basename = f'{prefix}{suffix}.pdf'
+            filename = os.path.join('inn', basename)
+            if not os.path.exists(filename):
+                click.echo(f'INFO - Downloading {basename}')
+                response = requests.get(base_url + basename)
+                response.raise_for_status()
+
+                with open(filename, 'wb') as f:
+                    f.write(response.content)
 
 
 if __name__ == '__main__':

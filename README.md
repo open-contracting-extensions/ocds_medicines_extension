@@ -4,7 +4,11 @@ Adds fields to the item object relevant to the procurement of medicines.
 
 ## Guidance
 
-This extension is intended to be used in the medicines-related items in the tender, award, or contract stages, to add more specific details that a medicine item may have. To use it, set the properties that are known, including the active ingredients, dosage form, the medicine container, and the administration route.
+This extension is used to describe medicinal products at the tender, award and/or contract stages. Using this extension, a publisher can specify the medicinal product's active ingredients and their strength, the dosage form, the medicine's container, and the administration route. In doing so, it makes it easier to compare the procurement of medicinal products across jurisdictions, and thereby supports [external reference pricing](https://en.wikipedia.org/wiki/External_reference_pricing).
+
+Dosage forms and container sizes differ significantly across countries, which makes comparison difficult. To ease comparison, the extension provides standardized codelists for the dosage form, immediate container and administration route, based on [Health Level Seven (HL7)](https://www.hl7.org), a set of international standards for health data. That said, if you haven't adopted and can't map your values to the HL7 codes, you may use your own codes. To allow a user to interpret your codes, you should describe the codelists, and how to find the definitions of codes, in your [publication policy](https://standard.open-contracting.org/latest/en/guidance/publish/#finalize-your-publication-policy).
+
+For the names of active ingredients, it is recommended to use [International Nonproprietary Names (INN)](https://www.who.int/teams/health-product-and-policy-standards/inn). The World Health Organization (WHO) maintains a cumulative list of all INNs, with equivalent names in Latin, English, French, Spanish, Arabic, Chinese and Russian. To ease comparison, it is recommended to use the lowercase Latin name.
 
 If a contracting process is in the award or contract stage, it’s possible to know more information about the medicine, such as the brand, the manufacturer, the country of origin, the expiration date, if they must maintain a cold chain and all the other commercial, financial and logistical conditions. Use the [generic item attributes](https://extensions.open-contracting.org/en/extensions/itemAttributes/master/) extension for all the cases where the medicine item has other attributes not included in this extension.
 
@@ -16,13 +20,17 @@ If a medicine item is packaged in a multi-drug container, use `items.quantity` f
 
 ### One active ingredient
 
-This is an [example](https://api.mercadopublico.cl/APISOCDS/ocds/tender/734-82-LP14) of an item of a drug procurement process in Chile, and its modeling in the extension.
+In this example, we demonstrate how to use this extension to describe a [drug procurement process](https://www.mercadopublico.cl/Procurement/Modules/RFB/DetailsAcquisition.aspx?qs=OE1kSVnLUBVxS5IkXPNLRQ==) from Chile. (You can view its [original OCDS data](https://api.mercadopublico.cl/APISOCDS/ocds/tender/734-82-LP14).)
+
+Item 3 is described as:
 
 Description | Minimum dispensing unit
---|--
+-|-
 Acetilcisteina | ACETILCISTEINA-N 100 MG/ML SOLUCION PARA NEBULIZAR FRASCO 15-30 ML ENVASE INDIVIDUAL RESISTENTE CON SELLO QUE ASEGURE INVIOLABILIDAD DEL CONTENIDO
 
 The strength is expressed as "100 MG/ML". The UN/CEFACT [Recommendation 20 – Codes for Units of Measure Used in International Trade](https://unece.org/trade/uncefact/cl-recommendations) codelist includes units like mg/l, g/l and kg/l, but not mg/ml. So, "100 MG/ML" is expressed as 100 g/l below.
+
+Based on this information, we can add the `dosageForm`, `administrationRoute`, `container` and `activeIngredients`.
 
 ```json
 {
@@ -36,10 +44,10 @@ The strength is expressed as "100 MG/ML". The UN/CEFACT [Recommendation 20 – C
           "scheme": "UNSPSC",
           "uri": "https://apis.mercadopublico.cl/OCDS/data/productos/categoria/51161701"
         },
-        "dosageForm": "solution",
-        "administrationRoute": "nasal",
+        "dosageForm": "SOL",
+        "administrationRoute": "NASINHL",
         "container": {
-          "name": "jar",
+          "name": "vial",
           "capacity": {
             "unit": {
               "scheme": "UNCEFACT",
@@ -50,7 +58,7 @@ The strength is expressed as "100 MG/ML". The UN/CEFACT [Recommendation 20 – C
         },
         "activeIngredients": [
           {
-            "name": "acetilcisteina",
+            "name": "acetylcysteinum",
             "strength": {
               "unit": {
                 "scheme": "UNCEFACT",
@@ -67,11 +75,17 @@ The strength is expressed as "100 MG/ML". The UN/CEFACT [Recommendation 20 – C
 ```
 ### More than one active ingredient
 
-This is an [example](https://www.contrataciones.gov.py/licitaciones/convocatoria/391507-adquisicion-medicamentos-hospital-clinicas-1.html#pliego) of an item of a drug procurement process in Paraguay and how it would be represented with the extension.
+In this example, we demonstrate how to use this extension to describe a [drug procurement process](https://www.contrataciones.gov.py/licitaciones/convocatoria/391507-adquisicion-medicamentos-hospital-clinicas-1.html#pliego) from Paraguay. (You can view its [original OCDS data](https://contrataciones.gov.py/datos/api/v3/doc/ocds/record/ocds-03ad3f-391507).)
+
+In the "Suministros requeridos - especificaciones técnicas" tab, item 1 of lot 8 ("LOTE N° 8 - ANESTESICOS LOCALES - 2") is described as:
 
 Description | Technical specifications | Unit of measurement | Presentation |  Delivery presentation
---|--|--|--|--
-Clorhidrato de Bupivacaina Hiperbarica Inyectable     | clorhidrato de bupivacaina 25 mg. + dextrosa 82,5 mg. - solución inyectable | UNIDAD | VIAL | caja conteniendo 25 ampollas como minimo de 5 ml.
+-|-|-|-|-
+Clorhidrato de Bupivacaina Hiperbarica Inyectable | clorhidrato de bupivacaina 25 mg. + dextrosa 82,5 mg. - solución inyectable | UNIDAD | AMPOLLA | ampollas como minimo de 5 ml.
+
+For the name of the active ingredient, Annex 2 of the [INN Stem Book 2018](https://www.who.int/teams/health-product-and-policy-standards/inn/stembook), describes how to name acid salts: in this case, "bupivacainum hydrochloridum".
+
+Based on this information, we can add the `dosageForm`, `administrationRoute`, `container` and `activeIngredients`.
 
 ```json
 {
@@ -79,10 +93,10 @@ Clorhidrato de Bupivacaina Hiperbarica Inyectable     | clorhidrato de bupivacai
     "items": [
       {
         "id": "1",
-        "dosageForm": "injection",
-        "administrationRoute": "transdermal",
+        "dosageForm": "SOL",
+        "administrationRoute": "ISINJ",
         "container": {
-          "name": "blister",
+          "name": "amp",
           "capacity": {
             "unit": {
               "scheme": "UNCEFACT",
@@ -93,13 +107,13 @@ Clorhidrato de Bupivacaina Hiperbarica Inyectable     | clorhidrato de bupivacai
         },
         "activeIngredients": [
           {
-            "name": "clorhidrato de bupivacaina",
+            "name": "bupivacainum hydrochloridum",
             "strength": {
               "unit": {
                 "scheme": "UNCEFACT",
                 "id": "mg"
               },
-              "value": 250
+              "value": 25
             }
           },
           {
