@@ -124,7 +124,8 @@ Based on this information, we can add the `dosageForm`, `administrationRoute`, `
               "value": 82.5
             }
           }
-        ]
+        ],
+        "quantity": 25
       }
     ]
   }
