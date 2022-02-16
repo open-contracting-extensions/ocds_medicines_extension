@@ -14,8 +14,6 @@ If a contracting process is in the award or contract stage, it’s possible to k
 
 If a medicine item has more than one active ingredient, add each one to the `activeIngredients` array.
 
-If a medicine item is packaged in a multi-drug container, use `items.quantity` for the quantity in the container and `items.unit` for the unit.
-
 ## Examples
 
 ### One active ingredient
@@ -127,11 +125,7 @@ Based on this information, we can add the `dosageForm`, `administrationRoute`, `
             }
           }
         ],
-        "quantity": 25,
-        "unit": {
-          "id": "UNI",
-          "name": "Unidad"
-        }
+        "quantity": 25
       }
     ]
   }
