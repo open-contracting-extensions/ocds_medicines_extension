@@ -49,7 +49,7 @@
       "properties": {
         "name": {
           "title": "Name",
-          "description": "The name of the active ingredient. It is recommended to use the Latin name from the International Nonproprietary Names (INN). Also known as: generic name, drug, substance name, active substance.",
+          "description": "The name of the active ingredient. It is recommended to use the lowercase Latin name from the International Nonproprietary Names (INN). Also known as: generic name, drug, substance name, active substance.",
           "type": [
             "string",
             "null"
