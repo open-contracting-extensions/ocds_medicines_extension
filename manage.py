@@ -101,9 +101,9 @@ def hl7(codelist):
     not_selectable = {code['code'] for code in data['concept'] if code['properties'].get('notSelectable')}
 
     if codelist == 'RouteOfAdministration':
-        expected = set(['internalId', 'notSelectable', 'status', 'subsumedBy', 'synonymCode'])
+        expected = {'internalId', 'notSelectable', 'status', 'subsumedBy', 'synonymCode'}
     elif codelist == 'orderableDrugForm':
-        expected = set(['internalId', 'notSelectable', 'status', 'subsumedBy'])
+        expected = {'internalId', 'notSelectable', 'status', 'subsumedBy'}
     else:
         expected = set()
 
