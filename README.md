@@ -143,7 +143,7 @@ The fields, definitions and codelists used in this extension are based on the fo
 
 ## Background
 
-This extension is based on research with 4 data users and 6 data publishers including public entities, journalists, medicine price analysts, and software developers for medicine purchase systems from 9 countries in Latin America, Europe, and Africa. The extension includes the most used fields from the different countries.
+This extension is based on research with 4 data users and 6 data publishers including public organizations, journalists, medicine price analysts, and software developers for medicine purchase systems from 9 countries in Latin America, Europe, and Africa. The extension includes the most used fields from the different countries.
 
 ## Issues
 
