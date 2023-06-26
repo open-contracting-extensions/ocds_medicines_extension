@@ -6,12 +6,12 @@
           "title": "Active ingredients",
           "description": "The active ingredients, typically chemical compounds or biological substances.",
           "type": "array",
-          "minItems": 1,
-          "uniqueItems": true,
-          "wholeListMerge": true,
           "items": {
             "$ref": "#/definitions/ActiveIngredient"
-          }
+          },
+          "wholeListMerge": true,
+          "uniqueItems": true,
+          "minItems": 1
         },
         "dosageForm": {
           "title": "Dosage form",
