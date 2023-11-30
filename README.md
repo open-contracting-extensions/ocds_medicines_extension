@@ -28,7 +28,7 @@ Acetilcisteina | ACETILCISTEINA-N 100 MG/ML SOLUCION PARA NEBULIZAR FRASCO 15-30
 
 The strength is expressed as "100 MG/ML". The UN/CEFACT [Recommendation 20 – Codes for Units of Measure Used in International Trade](https://unece.org/trade/uncefact/cl-recommendations) codelist includes units like mg/l, g/l and kg/l, but not mg/ml. So, "100 MG/ML" is expressed as 100 g/l below.
 
-Based on this information, we can add the `dosageForm`, `administrationRoute`, `container` and `activeIngredients`.
+Based on this information, we can add the `dosageForm`, `administrationRoute`, `immediateContainer` and `activeIngredients`.
 
 ```json
 {
@@ -44,7 +44,7 @@ Based on this information, we can add the `dosageForm`, `administrationRoute`, `
         },
         "dosageForm": "SOL",
         "administrationRoute": "NASINHL",
-        "container": {
+        "immediateContainer": {
           "name": "vial",
           "capacity": {
             "unit": {
@@ -71,6 +71,7 @@ Based on this information, we can add the `dosageForm`, `administrationRoute`, `
   }
 }
 ```
+
 ### More than one active ingredient
 
 In this example, we demonstrate how to use this extension to describe a [drug procurement process](https://www.contrataciones.gov.py/licitaciones/convocatoria/391507-adquisicion-medicamentos-hospital-clinicas-1.html#pliego) from Paraguay. (You can view its [original OCDS data](https://contrataciones.gov.py/datos/api/v3/doc/ocds/record/ocds-03ad3f-391507).)
@@ -83,7 +84,7 @@ Clorhidrato de Bupivacaina Hiperbarica Inyectable | clorhidrato de bupivacaina 2
 
 For the name of the active ingredient, Annex 2 of the [INN Stem Book 2018](https://www.who.int/teams/health-product-and-policy-standards/inn/stembook), describes how to name acid salts: in this case, "bupivacainum hydrochloridum".
 
-Based on this information, we can add the `dosageForm`, `administrationRoute`, `container` and `activeIngredients`.
+Based on this information, we can add the `dosageForm`, `administrationRoute`, `immediateContainer` and `activeIngredients`.
 
 ```json
 {
@@ -93,7 +94,7 @@ Based on this information, we can add the `dosageForm`, `administrationRoute`, `
         "id": "1",
         "dosageForm": "SOL",
         "administrationRoute": "ISINJ",
-        "container": {
+        "immediateContainer": {
           "name": "amp",
           "capacity": {
             "unit": {
@@ -139,7 +140,7 @@ The fields, definitions and codelists used in this extension are based on the fo
 - Most of the fields are based on the [Drug](https://schema.org/Drug) definition by the [Schema.org Community Group](https://www.w3.org/community/schemaorg/) and the [Medication Resource](https://www.hl7.org/fhir/medication.html) from [Fast Healthcare Interoperability Resources (FHIR)](https://hl7.org/fhir/) standard.
 - The `administrationRoute` codelist contains the top-level concepts in HL7's [Route of Administration](https://terminology.hl7.org/CodeSystem/v3-RouteOfAdministration/) codelist, excluding any synonymous terms.
 - The `dosageForm` codelist contains the top-level concepts in HL7's [Orderable Drug Form](https://terminology.hl7.org/CodeSystem/v3-orderableDrugForm/) codelist, excluding the specific forms of sprays.
-- The `container` codelist is a copy of the codes and titles from FHIR's [Medication Knowledge Package Type](https://terminology.hl7.org/CodeSystem/medicationknowledge-package-type/) codelist. Given that the terms are undefined in FHIR, the descriptions are copied from corresponding terms from the [EDQM Standard Terms database](https://standardterms.edqm.eu), reproduced with the permission of the European Directorate for the Quality of Medicines & HealthCare, Council of Europe (EDQM). The EDQM Standard Terms database is not a static list and content can change over time; the descriptions were retrieved on July 21, 2021.
+- The `immediateContainer` codelist is a copy of the codes and titles from FHIR's [Medication Knowledge Package Type](https://terminology.hl7.org/CodeSystem/medicationknowledge-package-type/) codelist. Given that the terms are undefined in FHIR, the descriptions are copied from corresponding terms from the [EDQM Standard Terms database](https://standardterms.edqm.eu), reproduced with the permission of the European Directorate for the Quality of Medicines & HealthCare, Council of Europe (EDQM). The EDQM Standard Terms database is not a static list and content can change over time; the descriptions were retrieved on July 21, 2021.
 
 ## Background
 

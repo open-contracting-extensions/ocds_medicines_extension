@@ -14,7 +14,7 @@
   "codelists": [
     "dosageForm.csv",
     "administrationRoute.csv",
-    "container.csv"
+    "immediateContainer.csv"
   ],
   "compatibility": [
     "1.1"
