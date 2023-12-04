@@ -149,3 +149,9 @@ This extension is based on research with 4 data users and 6 data publishers incl
 ## Issues
 
 Report issues for this extension in the [ocds-extensions repository](https://github.com/open-contracting/ocds-extensions/issues), putting the extension's name in the issue's title.
+
+## Changelog
+
+### 2023-12-04
+
+* Rename `container` to `immediateContainer` and `container.csv` to `immediateContainer.csv`
