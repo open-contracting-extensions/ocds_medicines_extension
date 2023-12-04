@@ -35,10 +35,10 @@
           "openCodelist": true,
           "minLength": 1
         },
-        "container": {
-          "title": "Container",
+        "immediateContainer": {
+          "title": "Immediate container",
           "description": "The immediate container for the medicine. Also known as: presentation, presentation form, package.",
-          "$ref": "#/definitions/Container"
+          "$ref": "#/definitions/ImmediateContainer"
         }
       }
     },
@@ -64,19 +64,19 @@
       },
       "minProperties": 1
     },
-    "Container": {
-      "title": "Container",
+    "ImmediateContainer": {
+      "title": "Immediate container",
       "description": "The immediate container for the medicine. Also known as: presentation, presentation form, package.",
       "type": "object",
       "properties": {
         "name": {
           "title": "Name",
-          "description": "The common name of the container, from the container codelist.",
+          "description": "The common name of the container, from the immediate container codelist.",
           "type": [
             "string",
             "null"
           ],
-          "codelist": "container.csv",
+          "codelist": "immediateContainer.csv",
           "openCodelist": true,
           "minLength": 1
         },

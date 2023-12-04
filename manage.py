@@ -131,11 +131,11 @@ def cli():
 @cli.command()
 def update_container():
     """
-    Update schema/codelists/container.csv from HL7.
+    Update schema/codelists/immediateContainer.csv from HL7.
     """
     # Retain the descriptions from EDQM.
     descriptions = {}
-    with (basedir / 'codelists' / 'container.csv').open() as f:
+    with (basedir / 'codelists' / 'immediateContainer.csv').open() as f:
         reader = csv.DictReader(f)
         for row in reader:
             descriptions[row['Code']] = row['Description']
@@ -146,7 +146,7 @@ def update_container():
 
     data = response.json()
 
-    with csv_dump('container.csv', ['Code', 'Title', 'Description']) as writer:
+    with csv_dump('immediateContainer.csv', ['Code', 'Title', 'Description']) as writer:
         writer.writerows([[code['code'], code['display'], descriptions[code['code']]] for code in data['concept']])
 
 
@@ -195,7 +195,7 @@ def update_dosage_form():
 @click.pass_context
 def update(ctx):
     """
-    Update external codelists (administration route, container, dosage form).
+    Update external codelists (administration route, immediateContainer, dosage form).
     """
     ctx.invoke(update_administration_route)
     ctx.invoke(update_container)
