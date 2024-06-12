@@ -118,7 +118,7 @@
       "properties": {
         "scheme": {
           "title": "Scheme",
-          "description": "The codelist from which the identifier for the unit of measurement is taken, using the open [unitClassificationScheme](https://standard.open-contracting.org/latest/en/schema/codelists/#unit-classification-scheme) codelist. 'UNCEFACT' is recommended.",
+          "description": "The scheme or codelist from which the identifier for the unit of measurement is taken, using the open [unitClassificationScheme](https://standard.open-contracting.org/latest/en/schema/codelists/#unit-classification-scheme) codelist. 'UNCEFACT' is recommended.",
           "type": [
             "string",
             "null"
@@ -129,7 +129,7 @@
         },
         "id": {
           "title": "ID",
-          "description": "The identifier for the unit of measurement, taken from the codelist referenced by the `scheme` field. Refer to the [unitClassificationScheme](https://standard.open-contracting.org/latest/en/schema/codelists/#unit-classification-scheme) codelist for details of how to find identifiers within schemes.",
+          "description": "The identifier for the unit of measurement, taken from the scheme. Refer to the [unitClassificationScheme](https://standard.open-contracting.org/latest/en/schema/codelists/#unit-classification-scheme) codelist for details of how to find identifiers within schemes.",
           "type": [
             "string",
             "null"
