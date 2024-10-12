@@ -114,14 +114,15 @@ def hl7(codelist):
     if difference:
         warn(f"{codelist}: unexpected new properties: {sorted(difference)}")
 
-    codes = []
-    for code in data["concept"]:
+    codes = [
+        code
+        for code in data["concept"]
         if (
             not code["properties"].get("notSelectable")
             and code["properties"]["status"] == "active"
             and any(parent in not_selectable for parent in code["properties"]["subsumedBy"])
-        ):
-            codes.append(code)
+        )
+    ]
 
     return codes, not_selectable
 
@@ -174,7 +175,7 @@ def update_administration_route():
                 # Prefer IPINHL to its synonyms.
                 if code["code"] in ("ORINHL", "RESPINHL"):
                     continue
-                elif code["code"] != "IPINHL":
+                if code["code"] != "IPINHL":
                     warn(f"RouteOfAdministration: unexpected synonymous code: {code}")
             writer.writerow([code["code"], code["display"][0].upper() + code["display"][1:]])
 
