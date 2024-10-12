@@ -78,7 +78,7 @@ def edqm(email, password, url):
 
 
 def hl7(codelist):
-    response = requests.get(f"https://terminology.hl7.org/CodeSystem-v3-{codelist}.json")
+    response = requests.get(f"https://terminology.hl7.org/CodeSystem-v3-{codelist}.json", timeout=10)
     response.raise_for_status()
 
     data = response.json()
@@ -97,7 +97,7 @@ def hl7(codelist):
             if name in multi_value_properties:
                 code["properties"][name].add(value)
             elif name in code["properties"]:
-                raise Exception(f"{name} set to {code['properties'][name]}, not {value}")
+                raise Exception(f"{name} set to {code['properties'][name]}, not {value}")  # noqa: TRY002
             else:
                 code["properties"][name] = value
 
@@ -145,7 +145,7 @@ def update_container():
             descriptions[row["Code"]] = row["Description"]
 
     # https://terminology.hl7.org/CodeSystem/medicationknowledge-package-type/
-    response = requests.get("https://terminology.hl7.org/CodeSystem-medicationknowledge-package-type.json")
+    response = requests.get("https://terminology.hl7.org/CodeSystem-medicationknowledge-package-type.json", timeout=10)
     response.raise_for_status()
 
     data = response.json()
@@ -164,8 +164,8 @@ def update_administration_route():
 
     # "definition" is not used for Description, because it is the same as the "display", except for:
     #
-    # - "Inhalation, respiratory", "Inhalation, oral"
-    # - "Injection, intrauterine", "Injection, intracervical (uterus)"
+    # - "Inhalation, respiratory", "Inhalation, oral" (text change)
+    # - "Injection, intrauterine", "Injection, intracervical (uterus)" (text change)
     # - "instillation, urethral", "Instillation, urethral" (lettercase change)
     # - "Topical application, vaginal", "Insertion, vaginal" (typographical error)
 
@@ -224,7 +224,7 @@ def print_edqm_administration_route(email, password):
 def download_inn_lists():
     os.makedirs("inn", exist_ok=True)
 
-    response = requests.get("https://www.who.int/teams/health-product-and-policy-standards/inn/inn-lists")
+    response = requests.get("https://www.who.int/teams/health-product-and-policy-standards/inn/inn-lists", timeout=10)
     response.raise_for_status()
 
     # Note: PDFs are scans before RL46 (September 2001) and PL86 (March 2002).
@@ -240,7 +240,7 @@ def download_inn_lists():
             filename = os.path.join("inn", basename)
             if not os.path.exists(filename):
                 click.echo(f"INFO - Downloading {basename}")
-                response = requests.get(base_url + basename)
+                response = requests.get(base_url + basename, timeout=10)
                 response.raise_for_status()
 
                 with open(filename, "wb") as f:
