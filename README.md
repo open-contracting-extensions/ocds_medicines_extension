@@ -154,4 +154,5 @@ Report issues for this extension in the [ocds-extensions repository](https://git
 
 ### 2023-12-04
 
-* Rename `container` to `immediateContainer` and `container.csv` to `immediateContainer.csv`
+* Rename `container` to `immediateContainer`
+* Rename `container.csv` to `immediateContainer.csv`
